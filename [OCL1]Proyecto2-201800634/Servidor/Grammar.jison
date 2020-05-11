@@ -14,13 +14,7 @@
     const {Excepcion} = require('../utils/Exception');
     const {Type, types} = require('../utils/Type');
     const {Tree} = require('../Simbols/Tree');
-    var ejemplo_codigoPablo = 0 ; 
-    console.log("CODIGO JAVA :v");
-    function incremnetarPablo(){
-           console.log("HOLA MUNDO DESDE EL JISON");
-           ejemplo_codigoPablo++;
-    }
-    console.log(ejemplo_codigoPablo);
+    
 %}
 %lex
 %options case-insensitive
@@ -131,7 +125,7 @@ BLOQUE_INSTRUCCIONES : '{' INSTRUCCIONES '}' {$$ = $2;}
                      ;
 
 
-CONDICION : '(' EXPRESION ')' {$$ = $2;  incremnetarPablo();}
+CONDICION : '(' EXPRESION ')' {$$ = $2;  incremento();}
           ;
       
 EXPRESION : '-' EXPRESION %prec UMENOS	    { $$ = new Arithmetic($1, null, '-', _$.first_line, _$.first_column); }
