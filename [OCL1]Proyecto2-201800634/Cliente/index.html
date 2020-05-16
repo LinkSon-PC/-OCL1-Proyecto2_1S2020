@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>201800464</title>
+    <!--  Bootstrap  -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- GONT AWESOME-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css//sergio.css" />
+
+    <!--  Jquery  y code mirror  -->
+
+    <link href="../css/index.css" rel="stylesheet" type="text/css" media="all">
+    <script src="../js/codemirror/lib/codemirror.js"></script>
+    <link rel="stylesheet" href="../js/codemirror//lib//codemirror.css">
+    <link rel="stylesheet" href="../js/codemirror//theme//eclipse.css">
+    <script src="../js/codemirror/mode/clike/clike.js"></script>
+
+    <!--  lo siguient es para JStree    asp  -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
+
+    
+
+    <script type="text/javascript">
+        $(function () {
+
+            var jsondata = [
+                           { "id": "ajson1", "parent": "#", "text": "Simple root node" },
+                           { "id": "ajson2", "parent": "#", "text": "Root node 2" },
+                           { "id": "ajson3", "parent": "ajson2", "text": "Child 1" },
+                           { "id": "ajson4", "parent": "ajson2", "text": "Child 2" },
+            ];
+
+            createJSTree(jsondata);
+        });
+
+        function createJSTree(jsondata) {            
+            $('#SimpleJSTree').jstree({
+                'core': {
+                    'data': jsondata
+                }
+            });
+        }
+    </script>
+</head>
+
+<body>
+
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">Proyecto 2</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link">Guardar
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"> </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn-outline-dark">Guardar como..</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn-outline-dark">Salir</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <div class="contenedor">
+        <input id="fileInput" title="Abrir" type="file" size="50" onchange="AbrirArchivo(this.files)" class="btn btn-dark">
+        <button onclick="DescargarArchivo();" id="guardar" title="Guardar" class="btn btn-warning">Guardar</button>
+        <button onclick="agregar();" title="AgregarPestana" id="btn4" class="btn btn-info">Agregar Pestana</button>
+        <button onclick="quitar();" title="QuitarPestana" id="btn5" class="btn btn-danger">Quitar Pestana</button>
+        <button class="btn btn-success" onclick="analisis()">Ejecutar</button>
+        <!-- Aca mando a llamar el metodo para obtener errores       ,   le mando el texto como si fuera analizar solo que recibo los errores en lugar del arbol por ejemplo           -->
+        <button class="btn btn-secondary" onclick="errores()">Obtener Errores</button>
+        <button class="btn btn-light" >Generar AST</button>
+        
+        <div id="pestanas">
+            <ul id=lista>
+            </ul>
+        </div>
+      
+        <body>
+            <div id="contenidopestanas">
+            </div>
+      </div>
+    <br>
+    <br>
+    <br>
+
+
+
+
+
+
+
+<script>
+    function analizar1() {
+        var texto = document.getElementById("entrada1").value;
+        alert("ENTRADA: "+ texto);
+        var url = 'http://localhost:7000/comunicar/';
+        $.post(url, { text1: texto  , text2: "QUE TAL"}, function (data, status) {
+            if (status.toString() == "success") {
+                console.log(data)
+                alert("El resultado es: " + data.toString());
+            } else {
+                alert("Error estado de conexion:" + status);
+            }
+        });
+        console.log("OK LLAMANDO AL METODO");    
+    }
+    </script>
+    
+    
+    
+    
+    
+    
+     <!-- Aca despliego los errores  --> 
+    <div id="capa">
+    
+    </div>
+    
+    
+     <!-- Aca despliego el Arbol de Sintaxis    -->
+    <div id="SimpleJSTree"></div>
+    
+    
+    
+      <!-- Footer -->
+      <footer class="py-5 bg-dark">
+        <div class="container">
+          <p class="m-0 text-center text-white">ANTHONY FERNANDO SON MUX   &copy;       201800634</p>
+        </div>
+        <!-- /.container -->
+      </footer>
+
+    </div>
+</body>
+    </html>
