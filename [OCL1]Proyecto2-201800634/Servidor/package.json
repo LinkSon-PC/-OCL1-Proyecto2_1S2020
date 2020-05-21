@@ -1,7 +1,7 @@
 {
     "name": "interprete-jison",
     "version": "1.0.0",
-    "description": "Interprete para conferencia OLC1",
+    "description": "[OCL1}Proyecto2",
     "main": "index.js",
     "scripts": {
         "ts:node": "ts-node src/",
@@ -12,14 +12,14 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/PvasquezF/Interprete-Jison.git"
+        "url": "https://github.com/LinkSon-PC/-OCL1-Proyecto2_1S2020"
     },
-    "author": "Pavel",
+    "author": "Anthony Fernando Son Mux",
     "license": "ISC",
     "bugs": {
-        "url": "https://github.com/PvasquezF/Interprete-Jison/issues"
+        "url": "https://github.com/LinkSon-PC/-OCL1-Proyecto2_1S2020"
     },
-    "homepage": "https://github.com/PvasquezF/Interprete-Jison#readme",
+    "homepage": "https://github.com/LinkSon-PC/-OCL1-Proyecto2_1S2020",
     "devDependencies": {
         "tslint": "^6.1.1",
         "typescript": "^3.8.3"

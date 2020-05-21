@@ -76,8 +76,8 @@ id ([a-zA-Z_])[a-zA-Z0-9_]*
 {decimal}             return 'decimal'
 {entero}              return 'entero' 
 {stringliteral}       {console.log("string LITERAL....");return 'STRING_LITERAL'}
-{comentarioBloque}    {console.log("comBloque reconocido");return 'comentarioBloque'}
-{comentarioLinea}     {console.log("comLinea reconocido"); return 'comentarioLinea'}
+{comentarioBloque}    {console.log("Comentario de BLoque");return 'comentarioBloque'}
+{comentarioLinea}     {console.log("Comentario de Linea"); return 'comentarioLinea'}
 ":"                   return ':'
 "/"                   return '/'
 ";"                   return ';'

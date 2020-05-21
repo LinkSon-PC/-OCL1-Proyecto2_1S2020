@@ -55,43 +55,6 @@ var openFile = function(event) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     var contador=0;
 function get_cont(){
     return contador++;
@@ -296,19 +259,19 @@ function DescargarArchivo(){
 
 
 function analisis() {
+    console.log("ANALIZANDO ENTRADA EN http://localhost:7000/analizar/");  
     var ventana_actual=document.getElementById(get_vent());
     var texto=ventana_actual.value;
     alert("ENTRADA: "+ texto);
-    var url = 'http://localhost:7000/comunicar/';
-    $.post(url, { text1: texto  , text2: "QUE TAL"}, function (data, status) {
+    var url = 'http://localhost:7000/analizar/';
+    $.post(url, { text1: texto  , text2: "Prueba 2"}, function (data, status) {
         if (status.toString() == "success") {
             console.log(data)
             alert("El resultado es: " + data.toString());
         } else {
             alert("Error estado de conexion:" + status);
         }
-    });
-    console.log("OK LLAMANDO AL METODO");    
+    }); 
 }
 
 
@@ -331,5 +294,5 @@ capa.innerHTML = data.toString();
           alert("Error estado de conexion:" + status);
       }
   });
-  console.log("OK LLAMANDO AL METODO");    
+  console.log("ERROR DE ENTRADA");    
 }

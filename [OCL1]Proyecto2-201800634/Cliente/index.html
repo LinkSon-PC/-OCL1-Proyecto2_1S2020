@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>201800464</title>
+    <title>201800634</title>
     <!--  Bootstrap  -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -16,7 +16,7 @@
     <link rel="stylesheet" type="text/css" href="css/index.css" />
     <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="css//sergio.css" />
+    <link rel="stylesheet" type="text/css" href="css//pagina.css" />
 
     <!--  Jquery  y code mirror  -->
 
@@ -28,9 +28,10 @@
 
     <!--  lo siguient es para JStree    asp  -->
 
+    <!--
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
-
+    -->
     
 
     <script type="text/javascript">
@@ -69,6 +70,29 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <input id="fileInput" title="Abrir" type="file" size="50" onchange="AbrirArchivo(this.files)" class="btn btn-dark">
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="btn btn-dark" onclick="DescargarArchivo();" id="guardar" title="Guardar">Guardar</a>
+                    </li>
+
+                    
+                    <li class="nav-item">
+                        <a class="btn btn-dark" onclick="errores()">Obtener Errores</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="btn btn-dark" onclick="analisis()">EJECUTAR</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="btn btn-dark">Generar AST</a>
+                    </li>
+
+
+                    <!--
                     <li class="nav-item active">
                         <a class="nav-link">Guardar
                             <span class="sr-only">(current)</span>
@@ -77,12 +101,15 @@
                     <li class="nav-item">
                         <a class="nav-link"> </a>
                     </li>
+
                     <li class="nav-item">
                         <a class="nav-link btn-outline-dark">Guardar como..</a>
                     </li>
+                    
                     <li class="nav-item">
                         <a class="nav-link btn-outline-dark">Salir</a>
                     </li>
+                    -->
                 </ul>
             </div>
         </div>
@@ -95,14 +122,20 @@
     <br>
 
     <div class="contenedor">
+        <!--
         <input id="fileInput" title="Abrir" type="file" size="50" onchange="AbrirArchivo(this.files)" class="btn btn-dark">
         <button onclick="DescargarArchivo();" id="guardar" title="Guardar" class="btn btn-warning">Guardar</button>
-        <button onclick="agregar();" title="AgregarPestana" id="btn4" class="btn btn-info">Agregar Pestana</button>
-        <button onclick="quitar();" title="QuitarPestana" id="btn5" class="btn btn-danger">Quitar Pestana</button>
         <button class="btn btn-success" onclick="analisis()">Ejecutar</button>
+        -->
+
+        <button onclick="agregar();" title="AgregarPestana" id="btn4" class="btn btn-dark">Agregar Pestana</button>
+        <button onclick="quitar();" title="QuitarPestana" id="btn5" class="btn btn-dark">Quitar Pestana</button>
         <!-- Aca mando a llamar el metodo para obtener errores       ,   le mando el texto como si fuera analizar solo que recibo los errores en lugar del arbol por ejemplo           -->
+        
+        <!--
         <button class="btn btn-secondary" onclick="errores()">Obtener Errores</button>
         <button class="btn btn-light" >Generar AST</button>
+        -->
         
         <div id="pestanas">
             <ul id=lista>
@@ -124,10 +157,12 @@
 
 
 <script>
-    function analizar1() {
+    function Analizar_Entrada() {
+        console.log("Enviar Entradada a http://localhost:7000/analizar/");  
+
         var texto = document.getElementById("entrada1").value;
         alert("ENTRADA: "+ texto);
-        var url = 'http://localhost:7000/comunicar/';
+        var url = 'http://localhost:7000/analizar/';
         $.post(url, { text1: texto  , text2: "QUE TAL"}, function (data, status) {
             if (status.toString() == "success") {
                 console.log(data)
@@ -136,7 +171,7 @@
                 alert("Error estado de conexion:" + status);
             }
         });
-        console.log("OK LLAMANDO AL METODO");    
+        //console.log("OK LLAMANDO AL METODO");    
     }
     </script>
     
@@ -157,12 +192,14 @@
     
     
       <!-- Footer -->
+      <!--
       <footer class="py-5 bg-dark">
         <div class="container">
           <p class="m-0 text-center text-white">ANTHONY FERNANDO SON MUX   &copy;       201800634</p>
         </div>
+        -->
         <!-- /.container -->
-      </footer>
+      <!--</footer>-->
 
     </div>
 </body>

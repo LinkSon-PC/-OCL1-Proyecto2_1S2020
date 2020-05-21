@@ -26,7 +26,7 @@ app.get('/', (req, res) => {
     consola: [],
     errores: []
   });
-}).get('/analizar', (req, res) => {
+}).get('/enviar', (req, res) => {
   res.render('views/index', {
     entrada: '',
     consola: [],
@@ -34,7 +34,7 @@ app.get('/', (req, res) => {
   });
 });
 
-app.post('/analizar', (req, res) => {
+app.post('/enviar', (req, res) => {
   const { entrada, consola } = req.body;
   if (!entrada) {
     return res.redirect('/');
@@ -67,11 +67,12 @@ app.post('/analizar', (req, res) => {
   });
 });
 
+
 app.listen(port, err => {
   return console.log(`server is listening on ${port}`);
 });
 
-app.post('/comunicar/', function (req, res) {
+app.post('/analizar/', function (req, res) {
 
   var entrada1=req.body.text1;
   var entrada2 = req.body.text2;
