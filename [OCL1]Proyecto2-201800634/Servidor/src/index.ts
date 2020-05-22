@@ -4,9 +4,12 @@ import { Break } from './Expresiones/Break';
 import { Continue } from './Expresiones/Continue';
 import { Exception } from './utils/Exception';
 import { Errores } from "./ManejoErrores/Errores";
+import { KeyObject } from 'crypto';
+import { json } from 'body-parser';
+import { parse } from 'querystring';
 
-const parser = require('./Grammar/Grammar.js');
-const MyParser_300445 = require('./Grammar/graProyecto.js'); // ESTO ME SIRVE PARA LLAMAR A AL ARCHIVO.JISON 
+//const parser = require('./Grammar/Grammar.js');
+const parser = require('./Grammar/graProyecto.js'); // ESTO ME SIRVE PARA LLAMAR A AL ARCHIVO.JISON 
 
 const cors = require('cors');
 const app = express();
@@ -34,6 +37,7 @@ app.get('/', (req, res) => {
   });
 });
 
+/*
 app.post('/enviar', (req, res) => {
   const { entrada, consola } = req.body;
   if (!entrada) {
@@ -66,6 +70,7 @@ app.post('/enviar', (req, res) => {
     errores: tree.excepciones
   });
 });
+*/
 
 
 app.listen(port, err => {
@@ -76,11 +81,12 @@ app.post('/analizar/', function (req, res) {
 
   var entrada1=req.body.text1;
   var entrada2 = req.body.text2;
-  const tree = MyParser_300445.parse(entrada1); 
+  const tree = parser.parse(entrada1); 
   console.log("\n\n\n\n errores guardados \n"+Errores.geterror());
-  console.log(tree);
+  console.log("SALIDA ANLIZAR 2");
+  console.log(json(parse(tree.instructions)));
 
-  res.send( tree );
+  res.send( tree.instructions );
 });
 
 
@@ -91,7 +97,8 @@ app.post('/errores/', function (req, res) {
 
   var entrada1=req.body.text1;
   var entrada2 = req.body.text2;
-  const tree = MyParser_300445.parse(entrada1);
+  const tree = parser.parse(entrada1);
+  console.log("SALIDA ERROR");
 
   res.send( Errores.geterror());
 });

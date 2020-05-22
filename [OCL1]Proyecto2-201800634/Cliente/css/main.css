@@ -58,7 +58,7 @@ a:focus {
 
 a:hover {
 	text-decoration: none;
-  color: #57b846;
+  color: #1a00585d;
 }
 
 /*---------------------------------------------*/
@@ -67,7 +67,7 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 p {
-	font-family: Raleway-Regular;
+	font-family: Arial Narrow Bold;
 	font-size: 14px;
 	line-height: 1.7;
 	color: #666666;
