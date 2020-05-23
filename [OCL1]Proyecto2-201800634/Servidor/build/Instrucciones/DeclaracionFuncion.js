@@ -1,9 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const Node_1 = require("../Abstract/Node");
+const Return_metodo_1 = require("./Return_metodo");
+let CNodoError = require('../ManejoErrores/NodoError');
+let CErrores = require('../ManejoErrores/Errores');
 /**
  * @class Inserta una nueva variable en la tabla de simbolos
  */
+const GraficaArbolAts_1 = require("../ManejoErrores/GraficaArbolAts");
+const Rep_1 = require("../REPORTES/Rep");
+const Metodo_1 = require("../REPORTES/Metodo");
 class DeclaracionFuncion extends Node_1.Node {
     /**
      * @constructor Crea el nodo instruccion para la sentencia Declaracion
@@ -13,12 +19,36 @@ class DeclaracionFuncion extends Node_1.Node {
      * @param line Linea de la sentencia if
      * @param column Columna de la sentencia if
      */
-    constructor(type, identifier, parametros, line, column) {
+    constructor(type, identifier, OpcionMetodoFUncion, line, column) {
         super(type, line, column);
         this.identifier = identifier;
-        this.parametros = parametros;
+        this.value = OpcionMetodoFUncion;
     }
     execute(table, tree) {
+        if (Rep_1.Rep.t1 == true || Rep_1.Rep.t2 == true) {
+            Rep_1.Rep.nombreMetodoActual = this.identifier;
+            Rep_1.Rep.addMetodo(Rep_1.Rep.claseActual.id, new Metodo_1.Metodo(this.identifier, this.type.toString()));
+        }
+        GraficaArbolAts_1.GraficaArbolAts.add("<li data-jstree='{ \"opened\" : true }'>DeclaracionFunciones\n");
+        /*ACA HAY UN AMBITO NUEVO */
+        let res;
+        GraficaArbolAts_1.GraficaArbolAts.add("<ul>\n");
+        GraficaArbolAts_1.GraficaArbolAts.add("<li data-jstree='{ \"opened\" : true }'>ID(" + this.identifier + ")</li>\n");
+        GraficaArbolAts_1.GraficaArbolAts.add("<li data-jstree='{ \"opened\" : true }'>TIPO(" + this.type.toString() + ")</li>\n");
+        GraficaArbolAts_1.GraficaArbolAts.add("<li data-jstree='{ \"opened\" : true }'>INSTRUCCIONES\n");
+        GraficaArbolAts_1.GraficaArbolAts.add("<ul>\n");
+        res = this.value.execute(table, tree);
+        GraficaArbolAts_1.GraficaArbolAts.add("</ul>\n");
+        GraficaArbolAts_1.GraficaArbolAts.add("</li>\n");
+        GraficaArbolAts_1.GraficaArbolAts.add("</ul>\n");
+        if (res instanceof Return_metodo_1.Return_metodo) {
+            console.log("ERROR RETURN DE METODO ADENTRO DE UNA FUNCION ");
+            CErrores.Errores.add(new CNodoError.NodoError("Semantico", " RETURN DE METODO ADENTRO DE UNA FUNCION       " + " Columna:" + res.column, res.line));
+            GraficaArbolAts_1.GraficaArbolAts.add("</li>\n");
+            return res;
+        }
+        GraficaArbolAts_1.GraficaArbolAts.add("</li>\n");
+        return null;
     }
 }
 exports.DeclaracionFuncion = DeclaracionFuncion;

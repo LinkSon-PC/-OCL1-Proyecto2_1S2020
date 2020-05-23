@@ -3,13 +3,13 @@ import {Table} from "../Simbols/Table";
 import {Tree} from "../Simbols/Tree";
 import {Type} from "../utils/Type";
 import {types} from "../utils/Type";
-import { Import } from "./Import";
+import { Importe } from "./Importe";
 /**
  * Permite imprimir expresiones en la consola
  */
 export class Inicio extends Node{
     Lista_importes_clases:any = [];
-  
+   
     /**
      * @constructor Retorna el objeto Print
      * @param expression Expresion que se va a mostrar en consola
@@ -27,7 +27,7 @@ export class Inicio extends Node{
             this.Lista_importes_clases.push(m);
         });        
     }
-
+ 
     execute(table: Table, tree: Tree): any {
 
     }

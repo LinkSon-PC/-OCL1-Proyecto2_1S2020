@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const Node_1 = require("../Abstract/Node");
 const Type_1 = require("../utils/Type");
+const GraficaArbolAts_1 = require("../ManejoErrores/GraficaArbolAts");
 /**
  * @class Genera un nuevo nodo expresion para realizar operaciones relacionales
  */
@@ -21,6 +22,18 @@ class Relational extends Node_1.Node {
         this.Operator = Operator;
     }
     execute(table, tree) {
+        GraficaArbolAts_1.GraficaArbolAts.add("<li data-jstree='{ \"opened\" : true }'>RELACIONAL\n");
+        GraficaArbolAts_1.GraficaArbolAts.add("<ul>\n");
+        this.leftOperator.execute(table, tree);
+        if (this.Operator != null) {
+            GraficaArbolAts_1.GraficaArbolAts.add("<li data-jstree='{ \"opened\" : true }'>OperadorComparador</li>\n");
+        }
+        if (this.rightOperator != null) {
+            this.rightOperator.execute(table, tree);
+        }
+        GraficaArbolAts_1.GraficaArbolAts.add("</ul>\n");
+        GraficaArbolAts_1.GraficaArbolAts.add("</li>\n");
+        return null;
         /*
         const LeftResult = this.leftOperator.execute(table, tree);
         if (LeftResult instanceof Exception) {

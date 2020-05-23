@@ -1,3 +1,5 @@
+import {Tree} from '../Simbols/Tree';
+import {Table} from '../Simbols/Table';
 export class NodoError {
 
     private tipo:string;
@@ -7,7 +9,7 @@ export class NodoError {
     constructor(tipo:string,descripcion:string,linea:number){
         this.tipo=tipo;
         this.descripcion=descripcion;
-        this.linea=(linea+1);
+        this.linea=(linea);
     }
 
     public gettipo():string{
@@ -20,5 +22,9 @@ export class NodoError {
 
     public getlinea():number{
         return this.linea;
+    }
+
+    public execute(tabla:Table , tree:Tree):any{
+        return null;
     }
 }

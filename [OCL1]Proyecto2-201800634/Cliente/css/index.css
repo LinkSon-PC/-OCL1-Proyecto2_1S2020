@@ -1,6 +1,8 @@
+/*
 body {
     background: darkgrey;
 }
+*/
 
 .ta {
     resize: none;
@@ -19,7 +21,7 @@ body {
 }
 
 .contenedor{
-    width: 1080px;
+    width: 1700px;
     margin: auto;
     background:#272829;
     color: rgb(0, 112, 163);
@@ -70,7 +72,16 @@ body {
     border-radius: 5px;
     border-top-left-radius: 0px;
     border: 2px solid rgb(0, 32, 47);
-    width: 1025px;
+    width: 700px;
+}
+#contenidoArchivo{
+    clear: both;
+    background: rgb(70, 73, 73);
+    padding: 20px 0px 20px 20px;
+    border-radius: 5px;
+    border-top-left-radius: 0px;
+    border: 2px solid rgb(0, 32, 47);
+    width: 700px;
 }
 
 #pestanascon {

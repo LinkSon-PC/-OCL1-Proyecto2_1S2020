@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const Node_1 = require("../Abstract/Node");
+const GraficaArbolAts_1 = require("../ManejoErrores/GraficaArbolAts");
 /**
  * @class Inserta una nueva variable en la tabla de simbolos
  */
@@ -18,6 +19,8 @@ class Parametro extends Node_1.Node {
         this.identifier = identifier;
     }
     execute(table, tree) {
+        GraficaArbolAts_1.GraficaArbolAts.add("<li data-jstree='{ \"opened\" : true }'>Parametro (" + this.identifier + ")</li>\n");
+        return null;
     }
 }
 exports.Parametro = Parametro;

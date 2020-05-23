@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const GraficaArbolAts_1 = require("../ManejoErrores/GraficaArbolAts");
 var types;
 (function (types) {
     types[types["INT"] = 0] = "INT";
@@ -26,23 +27,47 @@ class Type {
     }
     toString() {
         if (this.type === types.BOOLEAN) {
-            return 'boolean';
+            return "boolean";
         }
         else if (this.type === types.INT) {
-            return 'int';
+            return "int";
         }
         else if (this.type === types.STRING) {
-            return 'string';
+            return "string";
         }
         else if (this.type === types.DOUBLE) {
-            return 'double';
+            return "double";
         }
         else if (this.type == types.VOID) {
-            return 'void';
+            return "void";
         }
         else if (this.type == types.CHAR) {
-            return 'char';
+            return "char";
         }
+    }
+    toAts() {
+        GraficaArbolAts_1.GraficaArbolAts.add("<li data-jstree='{ \"opened\" : true }'>TIPO\n");
+        GraficaArbolAts_1.GraficaArbolAts.add("<ul>\n");
+        if (this.type === types.BOOLEAN) {
+            GraficaArbolAts_1.GraficaArbolAts.add("<li data-jstree='{ \"opened\" : true }'>boolean</li>\n");
+        }
+        else if (this.type === types.INT) {
+            GraficaArbolAts_1.GraficaArbolAts.add("<li data-jstree='{ \"opened\" : true }'>int</li>\n");
+        }
+        else if (this.type === types.STRING) {
+            GraficaArbolAts_1.GraficaArbolAts.add("<li data-jstree='{ \"opened\" : true }'>String</li>\n");
+        }
+        else if (this.type === types.DOUBLE) {
+            GraficaArbolAts_1.GraficaArbolAts.add("<li data-jstree='{ \"opened\" : true }'>double</li>\n");
+        }
+        else if (this.type == types.VOID) {
+            GraficaArbolAts_1.GraficaArbolAts.add("<li data-jstree='{ \"opened\" : true }'>void</li>\n");
+        }
+        else if (this.type == types.CHAR) {
+            GraficaArbolAts_1.GraficaArbolAts.add("<li data-jstree='{ \"opened\" : true }'>char</li>\n");
+        }
+        GraficaArbolAts_1.GraficaArbolAts.add("</ul>\n");
+        GraficaArbolAts_1.GraficaArbolAts.add("</li>");
     }
 }
 exports.Type = Type;

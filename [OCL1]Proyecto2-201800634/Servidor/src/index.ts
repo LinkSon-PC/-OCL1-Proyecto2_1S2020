@@ -8,8 +8,8 @@ import { KeyObject } from 'crypto';
 import { json } from 'body-parser';
 import { parse } from 'querystring';
 
-const parser = require('./Grammar/Grammar.js');
-//const parser = require('./Grammar/graProyecto.js');
+//const parser = require('./Grammar/Grammar.js');
+const parser = require('./Grammar/graProyecto.js');
 
 const cors = require('cors');
 const app = express();

@@ -4,7 +4,7 @@ class NodoError {
     constructor(tipo, descripcion, linea) {
         this.tipo = tipo;
         this.descripcion = descripcion;
-        this.linea = (linea + 1);
+        this.linea = (linea);
     }
     gettipo() {
         return this.tipo;
@@ -14,6 +14,9 @@ class NodoError {
     }
     getlinea() {
         return this.linea;
+    }
+    execute(tabla, tree) {
+        return null;
     }
 }
 exports.NodoError = NodoError;

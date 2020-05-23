@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const Node_1 = require("../Abstract/Node");
+const GraficaArbolAts_1 = require("../ManejoErrores/GraficaArbolAts");
 /**
  * @class Reasigna el valor de una variable existente
  */
@@ -18,6 +19,16 @@ class Asignacion extends Node_1.Node {
         this.value = value;
     }
     execute(table, tree) {
+        GraficaArbolAts_1.GraficaArbolAts.add("<li data-jstree='{ \"opened\" : true }'>ASIGNACION\n");
+        GraficaArbolAts_1.GraficaArbolAts.add("<ul>\n");
+        GraficaArbolAts_1.GraficaArbolAts.add("<li data-jstree='{ \"opened\" : true }'>ID (" + this.identifier + ")</li>\n");
+        GraficaArbolAts_1.GraficaArbolAts.add("<li data-jstree='{ \"opened\" : true }'>VALOR_Expresion\n");
+        GraficaArbolAts_1.GraficaArbolAts.add("<ul>\n");
+        this.value.execute(table, tree);
+        GraficaArbolAts_1.GraficaArbolAts.add("</ul>\n");
+        GraficaArbolAts_1.GraficaArbolAts.add("</li>");
+        GraficaArbolAts_1.GraficaArbolAts.add("</ul>\n");
+        GraficaArbolAts_1.GraficaArbolAts.add("</li>");
         /*
         const result = this.value.execute(table, tree);
         if (result instanceof Exception) {
@@ -48,6 +59,7 @@ class Asignacion extends Node_1.Node {
         variable.value = result;
         return null;
         */
+        return null;
     }
 }
 exports.Asignacion = Asignacion;

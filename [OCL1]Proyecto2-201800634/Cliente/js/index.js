@@ -1,18 +1,69 @@
-var openFile = function(event) { 
-    var input = event.target; 
+function agregarArchivo() {
 
-    var reader = new FileReader(); 
-    reader.onload = function(){ 
-     var text = reader.result; 
-     //var node = document.getElementById('output'); 
-     // node.innerText = text;
+    var contenido=document.getElementById("contenidoArchivo");
+    var divp=document.createElement("div");
+    divp.setAttribute('id','Archivo');
+    var ta=document.createElement("textarea");
+    ta.setAttribute('id','textarea_A');
+    ta.setAttribute('name','textarea_A');
+    ta.setAttribute('class','ta');
+    ta.setAttribute('style','display:none');
+    ta.cols=123;
+    ta.rows=30;
+    divp.appendChild(ta);
+    contenido.appendChild(divp);
+
+    var act=document.getElementById('Archivo');
+    var tact=document.getElementById('textarea_A');
+    var editor=CodeMirror(act, {
+        lineNumbers: true,
+        value: tact.value,
+        matchBrackets: true,
+        styleActiveLine: true,
+        theme: "eclipse",
+        mode: "text/x-java"
+    }).on('change', editor => {
+        tact.value=editor.getValue();
+    });
+}
+
+
+    function Abrir(files){
+        agregarArchivo();
+        
+        var file = files[0];
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            var act=document.getElementById("Archivo");
+            var tact=document.getElementById("textarea_A");
+            tact.value = e.target.result;
     
-     console.log(reader.result.substring(0, 200)); 
-    }; 
-    reader.readAsText(input.files[0]); 
-    }; 
-
-
+            while (act.firstChild) {
+                act.removeChild(act.firstChild);
+            }
+    
+            act.appendChild(tact);
+            var editor=CodeMirror(act, {
+                lineNumbers: true,
+                value: tact.value,
+                matchBrackets: true,
+                styleActiveLine: true,
+                theme: "eclipse",
+                mode: "text/x-java"
+            }).on('change', editor => {
+                tact.value=editor.getValue();
+            });
+        };
+        reader.readAsText(file);
+        file.clear;
+    
+        var a=document.getElementById(get_vent().replace("entrada1","a"));
+        a.text=file.name;
+        linkedlist(get_vent(),file.name);
+    
+        var file_input=document.getElementById("fileInput");
+        document.getElementById('fileInput').value="";
+    }
 
     function AbrirArchivo(files){
         var file = files[0];
@@ -134,7 +185,7 @@ function index(pestanias, pestania) {
 }
 
 /*---------------------------------------Funcion Agregar Pestania----------------------------------------*/
-function agregar() {
+function AgregarPestana() {
     var x=get_cont();
     var lu=document.getElementById("lista");
     var li=document.createElement("li");
@@ -174,7 +225,7 @@ function agregar() {
     });
 }
 
-function quitar(){
+function QuitarPestana(){
     try{
         var lu=document.getElementById("lista");
         lu.removeChild(document.getElementById(get_vent().replace("textarea","pestana")));

@@ -4,6 +4,7 @@ const Node_1 = require("../Abstract/Node");
 /**
  * @class
  */
+const GraficaArbolAts_1 = require("../ManejoErrores/GraficaArbolAts");
 class Llamada_metodo extends Node_1.Node {
     /**
      * @constructor
@@ -18,6 +19,20 @@ class Llamada_metodo extends Node_1.Node {
         this.id = id;
     }
     execute(table, tree) {
+        GraficaArbolAts_1.GraficaArbolAts.add("<li data-jstree='{ \"opened\" : true }'>LLamada_metodo (" + this.id + ")\n");
+        if (this.Parametros.length != 0) {
+            GraficaArbolAts_1.GraficaArbolAts.add("<ul>\n");
+            GraficaArbolAts_1.GraficaArbolAts.add("<li data-jstree='{ \"opened\" : true }'>LISTA_PARAMETROS\n");
+            GraficaArbolAts_1.GraficaArbolAts.add("<ul>\n");
+            for (let i = 0; i < this.Parametros.length; i++) {
+                this.Parametros[i].execute(table, tree);
+            }
+            GraficaArbolAts_1.GraficaArbolAts.add("</ul>\n");
+            GraficaArbolAts_1.GraficaArbolAts.add("</li>\n");
+            GraficaArbolAts_1.GraficaArbolAts.add("</ul>\n");
+        }
+        GraficaArbolAts_1.GraficaArbolAts.add("</li>\n");
+        return null;
     }
 }
 exports.Llamada_metodo = Llamada_metodo;

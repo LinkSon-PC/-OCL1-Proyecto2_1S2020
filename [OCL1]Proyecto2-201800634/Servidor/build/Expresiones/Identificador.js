@@ -4,6 +4,7 @@ const Node_1 = require("../Abstract/Node");
 /**
  * @class Nodo expresion identificador que obtendra el valor de una variable
  */
+const GraficaArbolAts_1 = require("../ManejoErrores/GraficaArbolAts");
 class Identificador extends Node_1.Node {
     /**
      * @constructor Retorna el objeto identificador creado
@@ -31,6 +32,8 @@ class Identificador extends Node_1.Node {
         this.type = variable.type;
         return variable.value;
         */
+        GraficaArbolAts_1.GraficaArbolAts.add("<li data-jstree='{ \"opened\" : true }'>ID (" + this.identifier + ")</li>\n");
+        return null;
     }
 }
 exports.Identificador = Identificador;

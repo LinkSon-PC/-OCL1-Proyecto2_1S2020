@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const Node_1 = require("../Abstract/Node");
+const GraficaArbolAts_1 = require("../ManejoErrores/GraficaArbolAts");
 /**
  * @class Nodo expresion continue, nos indica saltar iteraciones
  */
@@ -15,9 +16,8 @@ class Continue extends Node_1.Node {
         this.nombre = nombre;
     }
     execute(table, tree) {
-        /*
-         return this;
-         */
+        GraficaArbolAts_1.GraficaArbolAts.add("<li data-jstree='{ \"opened\" : true }'>Sentencia_continue</li>\n");
+        return this;
     }
 }
 exports.Continue = Continue;

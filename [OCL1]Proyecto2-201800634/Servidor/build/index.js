@@ -5,8 +5,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const Errores_1 = require("./ManejoErrores/Errores");
-const parser = require('./Grammar/Grammar.js');
-//const parser = require('./Grammar/graProyecto.js');
+//const parser = require('./Grammar/Grammar.js');
+const parser = require('./Grammar/graProyecto.js');
 const cors = require('cors');
 const app = express_1.default();
 const port = 7000;
@@ -68,7 +68,6 @@ app.listen(port, err => {
 });
 app.post('/analizar', function (req, res) {
     var entrada1 = req.body.text1;
-    var entrada2 = req.body.text2;
     const tree = parser.parse(entrada1);
     //console.log("\n\n\n\n errores guardados \n"+Errores.geterror());
     console.log("SALIDA ANLIZAR 2");
