@@ -6,7 +6,7 @@ const Type_2 = require("../utils/Type");
 /**
  * Permite imprimir expresiones en la consola
  */
-class Sentencia_imprime extends Node_1.Node {
+class Sentencia_Print extends Node_1.Node {
     /**
      * @constructor Retorna el objeto Print
      * @param expression Expresion que se va a mostrar en consola
@@ -26,4 +26,4 @@ class Sentencia_imprime extends Node_1.Node {
         */
     }
 }
-exports.Sentencia_imprime = Sentencia_imprime;
+exports.Sentencia_Print = Sentencia_Print;

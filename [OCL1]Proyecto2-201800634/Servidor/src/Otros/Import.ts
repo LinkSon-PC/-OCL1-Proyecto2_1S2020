@@ -10,7 +10,7 @@ import { Simbol } from "../Simbols/Simbol";
 /**
  * @class Reasigna el valor de una variable existente
  */
-export class Importe extends Node {
+export class Import extends Node {
     identifier: String;
     value: Node;
 

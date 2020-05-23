@@ -10,13 +10,13 @@ import { Simbol } from "../Simbols/Simbol";
 /**
  * @class Inserta una nueva variable en la tabla de simbolos
  */
-export class Declaracion_adentro_de_metodos_funciones extends Node {
+export class Declaracion_Parametros extends Node {
     type: Type;
     Lista_ids: Array<Node>;
     value: Node;
 
     /**
-      TIPO id DECLARACION_ADENTRO_DE_METODOS_FUNCIONESP
+      TIPO id Declaracion_Parametros
      */
     constructor(type: Type, identifier: Array<Node>, value: Node , line: Number, column: Number) {
         super(type, line, column);

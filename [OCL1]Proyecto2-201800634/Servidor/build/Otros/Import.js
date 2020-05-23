@@ -4,7 +4,7 @@ const Node_1 = require("../Abstract/Node");
 /**
  * @class Reasigna el valor de una variable existente
  */
-class Importe extends Node_1.Node {
+class Import extends Node_1.Node {
     /**
      * @constructor
      * @param identifier
@@ -51,4 +51,4 @@ class Importe extends Node_1.Node {
         */
     }
 }
-exports.Importe = Importe;
+exports.Import = Import;

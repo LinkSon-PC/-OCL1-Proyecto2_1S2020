@@ -6,7 +6,7 @@ import {types} from "../utils/Type";
 /**
  * Permite imprimir expresiones en la consola
  */
-export class Sentencia_imprime extends Node{
+export class Sentencia_Print extends Node{
     expression : Node;
     estilo:string; 
     /**

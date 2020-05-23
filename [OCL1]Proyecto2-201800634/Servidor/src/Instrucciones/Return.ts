@@ -5,7 +5,7 @@ import { Tree } from "../Simbols/Tree";
 /**
  * @class RETURN PARA LAS METODOS   
  */
-export class Return_metodo extends Node {
+export class Return extends Node {
     nombre :string; 
     /**
      * @constructor Retorna el objeto continue creado

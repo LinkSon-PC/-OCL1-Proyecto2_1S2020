@@ -5,7 +5,7 @@ import { Tree } from "../Simbols/Tree";
 /**
  * @class RETURN PARA LAS FUNCIONES 
  */
-export class Return_funcion extends Node {
+export class R_Funcion extends Node {
     nombre:string; 
     expresion:Node;
     /**

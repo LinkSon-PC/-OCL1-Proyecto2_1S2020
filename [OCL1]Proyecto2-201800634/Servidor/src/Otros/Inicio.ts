@@ -3,7 +3,7 @@ import {Table} from "../Simbols/Table";
 import {Tree} from "../Simbols/Tree";
 import {Type} from "../utils/Type";
 import {types} from "../utils/Type";
-import { Importe } from "./Importe";
+import { Import } from "./Import";
 /**
  * Permite imprimir expresiones en la consola
  */

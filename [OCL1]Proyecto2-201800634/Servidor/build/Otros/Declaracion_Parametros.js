@@ -4,9 +4,9 @@ const Node_1 = require("../Abstract/Node");
 /**
  * @class Inserta una nueva variable en la tabla de simbolos
  */
-class Declaracion_adentro_de_metodos_funciones extends Node_1.Node {
+class Declaracion_Parametros extends Node_1.Node {
     /**
-      TIPO id DECLARACION_ADENTRO_DE_METODOS_FUNCIONESP
+      TIPO id Declaracion_Parametros
      */
     constructor(type, identifier, value, line, column) {
         super(type, line, column);
@@ -16,4 +16,4 @@ class Declaracion_adentro_de_metodos_funciones extends Node_1.Node {
     execute(table, tree) {
     }
 }
-exports.Declaracion_adentro_de_metodos_funciones = Declaracion_adentro_de_metodos_funciones;
+exports.Declaracion_Parametros = Declaracion_Parametros;

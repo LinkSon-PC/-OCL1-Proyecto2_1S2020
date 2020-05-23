@@ -5,10 +5,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const Errores_1 = require("./ManejoErrores/Errores");
-const body_parser_1 = require("body-parser");
-const querystring_1 = require("querystring");
-//const parser = require('./Grammar/Grammar.js');
-const parser = require('./Grammar/graProyecto.js'); // ESTO ME SIRVE PARA LLAMAR A AL ARCHIVO.JISON 
+const parser = require('./Grammar/Grammar.js');
+//const parser = require('./Grammar/graProyecto.js');
 const cors = require('cors');
 const app = express_1.default();
 const port = 7000;
@@ -68,17 +66,16 @@ app.post('/enviar', (req, res) => {
 app.listen(port, err => {
     return console.log(`server is listening on ${port}`);
 });
-app.post('/analizar/', function (req, res) {
+app.post('/analizar', function (req, res) {
     var entrada1 = req.body.text1;
     var entrada2 = req.body.text2;
     const tree = parser.parse(entrada1);
-    console.log("\n\n\n\n errores guardados \n" + Errores_1.Errores.geterror());
+    //console.log("\n\n\n\n errores guardados \n"+Errores.geterror());
     console.log("SALIDA ANLIZAR 2");
-    console.log(body_parser_1.json(querystring_1.parse(tree.instructions)));
+    console.log(tree);
     res.send(tree.instructions);
 });
-/*                    ACA mando el html de una vez en ese formato y asi lo recibo alla en el frontEnd */
-app.post('/errores/', function (req, res) {
+app.post('/errores', function (req, res) {
     Errores_1.Errores.clear();
     var entrada1 = req.body.text1;
     var entrada2 = req.body.text2;
