@@ -11,9 +11,9 @@ class Reporte {
         let definitiva = "";
         definitiva += this.getCopiasClases();
         definitiva += "\n\n\n\n\n";
-        definitiva += this.getCopiasFunciones();
+        definitiva += this.getCopiaFunciones();
         definitiva += "\n\n\n\n\n";
-        definitiva += this.getCopiasVariables();
+        definitiva += this.getRepoteVariablesCopia();
         definitiva += "\n\n\n\n\n";
         return definitiva;
     }
@@ -136,7 +136,7 @@ class Reporte {
                         /* COINCIDE EL NOMBRE SOSPECHOSO ENTONCES MIRAMOS EL NOMBRE DE LOS METODOS SI COINCIDEN */
                         console.log("sospechoso el nombre es igual : " + this.ListaClases1[i].id);
                         // ESTOY EN LA MISMA CLASE ENTONCES DEBO DE BUSCAR SI HAY UNA MISMA FUNCION 
-                        this.buscarFucionesMetodosCopia(this.ListaClases1[i].getMetodos(), this.ListaClases2[j].getMetodos(), this.ListaClases1[i].id);
+                        this.METODO_FUNCION_COPIA(this.ListaClases1[i].getMetodos(), this.ListaClases2[j].getMetodos(), this.ListaClases1[i].id);
                         let res = this.comparaMetodos(this.ListaClases1[i].getMetodos(), this.ListaClases2[j].getMetodos()); // para clases copia
                         if (res[0] == true) { // si es copia
                             console.log("encontro una clase copia");
@@ -150,31 +150,31 @@ class Reporte {
             console.log("no hay elementos :( ");
         }
     }
-    static comparaMetodos(metodos1, metodos2) {
+    static comparaMetodos(clase1, clase2) {
         let res = [];
         let cont = 0;
-        if (metodos1.length == 0 && metodos2.length == 0) {
+        if (clase1.length == 0 && clase2.length == 0) {
             // si es copia porque solo tienen los nombres 
             res.push(true); // si es copia 
             res.push(0); // metodos Reporteetidos 0 
             return res;
         }
-        if (metodos1.length != metodos2.length) {
+        if (clase1.length != clase2.length) {
             // si no tienen la misma cantidad de metodos se descarta de una vez 
             console.log("descartado por no tener la misma cantidad de metodos/funciones");
             res.push(false);
             res.push(0);
         }
-        for (let i = 0; i < metodos1.length; i++) {
-            for (let j = 0; j < metodos2.length; j++) {
+        for (let i = 0; i < clase1.length; i++) {
+            for (let j = 0; j < clase2.length; j++) {
                 // tengo que ver que los nombres sean los mismos 
-                if (metodos1[i].id == metodos2[j].id) {
+                if (clase1[i].id == clase2[j].id) {
                     cont++;
                 }
             }
         }
         // tiene que coincidir la longitud del vector con el contador para determinar que es copia 
-        if (cont == metodos1.length) {
+        if (cont == clase1.length) {
             res.push(true);
             res.push(cont);
             return res;
@@ -213,12 +213,7 @@ class Reporte {
         }
         return cad;
     }
-    static getCopiasFunciones() {
-        /*
-        mostrará el tipo de retorno del método y/o función, nombre del mismo, listado de sus
-       parámetros con tipo y nombre, nombre de la clase al que pertenece.
-        
-        */
+    static getCopiaFunciones() {
         var cad = "";
         if (this.ListaFuncionesCopia.length != 0) {
             cad += "<div > \n";
@@ -241,29 +236,25 @@ class Reporte {
         }
         return cad;
     }
-    static buscarFucionesMetodosCopia(metodos1, metodos2, nombreclase) {
-        if (metodos1.length == 0 || metodos2.length == 0) {
-            console.log("NO TIENE METODOS una de esas clases entonces no puedo comparar los metodos/funciones asi  ");
+    static METODO_FUNCION_COPIA(clase1, clase2, nombreclase) {
+        if (clase1.length == 0 || clase2.length == 0) {
+            console.log("COMPARA LA CANTIDAD DE MÉTODOS DENTRO DE UNA CLASE");
             return;
         }
         else {
-            for (let i = 0; i < metodos1.length; i++) {
-                for (let j = 0; j < metodos2.length; j++) {
+            for (let i = 0; i < clase1.length; i++) {
+                for (let j = 0; j < clase2.length; j++) {
                     // tengo que ver que los nombres sean los mismos 
-                    if (metodos1[i].id == metodos2[j].id) {
+                    if (clase1[i].id == clase2[j].id) {
                         console.log("mismo nombre de metodo mas sospechoso");
-                        // el nombre cumple  , en clase y nombre del metodo 
-                        /*
-                        en este ambito busco variables copia
-                        */
-                        this.buscarVariablesCopia(nombreclase, metodos1[i].id, metodos1[i].listVariables, metodos2[j].listVariables);
-                        if (metodos1[i].tipo == metodos2[j].tipo) {
+                        this.VARIABLES_COPIA(nombreclase, clase1[i].id, clase1[i].listVariables, clase2[j].listVariables);
+                        if (clase1[i].tipo == clase2[j].tipo) {
                             // veamos el tipo ya verficado 
                             console.log("mismo Tipo en la funcion bai bai :)");
-                            if (metodos1[i].ParametrostoStringVERIFICACION() == metodos2[j].ParametrostoStringVERIFICACION()) {
+                            if (clase1[i].ParametrostoStringVERIFICACION() == clase2[j].ParametrostoStringVERIFICACION()) {
                                 console.log("BAI BAI HAY UNA COPIA DE METODO");
                                 // creo mi objeto copia de funcion 
-                                Reporte.ListaFuncionesCopia.push(new FuncionCopia_1.FuncionCopia(metodos1[i].id, metodos1[i].tipo, metodos1[i].tipoDeRetorno, nombreclase, metodos1[i].toReportCopiaFuncion()));
+                                Reporte.ListaFuncionesCopia.push(new FuncionCopia_1.FuncionCopia(clase1[i].id, clase1[i].tipo, clase1[i].tipoDeRetorno, nombreclase, clase1[i].toReportCopiaFuncion()));
                             }
                         }
                     }
@@ -271,16 +262,15 @@ class Reporte {
             }
         }
     }
-    static buscarVariablesCopia(nombreClase, nombreMetodo, listaVar1, listaVar2) {
-        console.log("-----------°°-------------");
-        console.log(listaVar1);
-        console.log(listaVar2);
-        console.log("------------°°------------");
+    static VARIABLES_COPIA(nombreClase, nombreMetodo, listaVar1, listaVar2) {
+        //console.log("-----------°°-------------");
+        //console.log(listaVar1);
+        //console.log(listaVar2);
+        //onsole.log("------------°°------------");
         for (let i = 0; i < listaVar1.length; i++) {
             for (let j = 0; j < listaVar2.length; j++) { // j es el puntero de las lista de variables 2 
                 if (listaVar1[i].id == listaVar2[j].id) {
                     if (listaVar1[i].tipo == listaVar2[j].tipo) {
-                        console.log("coincide el tipo bai bai tenemos una copia de una variable.:!!!");
                         //    constructor(tipo:any, id:any , nMetodo:string , nClase: string){
                         this.ListaVariablesCopia.push(new VariableCopia_1.VariableCopia(listaVar1[i].tipo, listaVar2[j].id, nombreMetodo, nombreClase));
                     }
@@ -288,14 +278,7 @@ class Reporte {
             }
         }
     }
-    /*             ReporteORTE DE VARIABLES COPIA        */
-    static getCopiasVariables() {
-        /*
-        Este Reporteorte deberá mostrar un listado de las variables que se consideran copia, para
-        considerar una variable como copia deberá pertenecer al mismo métodos y/o función y a la
-        misma clase, así como el mismo tipo. Este Reporteorte mostrará el tipo de la variable, nombre, la
-        función y/o método al que pertenece, la clase a la que pertenece.
-        */
+    static getRepoteVariablesCopia() {
         var cad = "";
         if (this.ListaVariablesCopia.length != 0) {
             cad += "<div > \n";
@@ -318,7 +301,7 @@ class Reporte {
         }
         return cad;
     }
-} // END ARCHIVO 
+}
 exports.Reporte = Reporte;
 Reporte.ListaClases1 = [];
 Reporte.ListaClases2 = [];

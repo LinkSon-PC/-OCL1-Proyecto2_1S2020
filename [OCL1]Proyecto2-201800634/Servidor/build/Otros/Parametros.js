@@ -6,9 +6,9 @@ const Reporte_1 = require("../Reportes/Reporte");
 /**
  * @class Inserta una nueva variable en la tabla de simbolos
  */
-class Declaracion_adentro_de_metodos_funciones extends Node_1.Node {
+class Parametros extends Node_1.Node {
     /**
-      TIPO id DECLARACION_ADENTRO_DE_METODOS_FUNCIONESP
+      TIPO id ParametrosP
      */
     constructor(type, identifier, value, line, column) {
         super(type, line, column);
@@ -60,4 +60,4 @@ class Declaracion_adentro_de_metodos_funciones extends Node_1.Node {
         return null;
     }
 }
-exports.Declaracion_adentro_de_metodos_funciones = Declaracion_adentro_de_metodos_funciones;
+exports.Parametros = Parametros;

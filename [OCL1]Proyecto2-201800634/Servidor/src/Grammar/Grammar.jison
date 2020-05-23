@@ -1,42 +1,56 @@
 %{
   /* cada importe es un NODO del arbol ATS
    el patron interprete dice que se tiene que crear todo modular una clase por nodo */
+
+   /* VALORES PRIMITIVOS */
     const {Primitive} = require('../Expresiones/Primitive');
     const {Arithmetic} = require('../Expresiones/Arithmetic');
     const {Relational} = require('../Expresiones/Relational');
-    const {Continue} = require('../Expresiones/Continue');
-    const {Break} = require('../Expresiones/Break');
     const {Logic} = require('../Expresiones/Logic');
     const {Identificador} = require('../Expresiones/Identificador');
-    const {Print} = require('../Instrucciones/Print');
-    const {If} = require('../Instrucciones/If');
-    const {While} = require('../Instrucciones/While');
     const {Declaracion} = require('../Instrucciones/Declaracion');
     const {Asignacion} = require('../Instrucciones/Asignacion');
     const {Excepcion} = require('../utils/Exception');
     const {Type, types} = require('../utils/Type');
+
+    /* CONTRUCCION AST */
     const {Tree} = require('../Simbols/Tree');
-  
-    const {Importe} = require('../Otros/Importe');
-    const {ClaseInstruccion} = require('../Otros/ClaseInstruccion');
     const {Inicio} = require('../Otros/Inicio');
-    const {Return_metodo} = require('../Instrucciones/Return_metodo');
-    const {Return_funcion} = require('../Instrucciones/Return_funcion');
+  
+    /* INSTRUCCIONES */
+    const {ClaseInstruccion} = require('../Otros/ClaseInstruccion');
+    const {Print} = require('../Instrucciones/Print');
+    const {If} = require('../Instrucciones/If');
+    const {Do_while} = require('../Instrucciones/Do_while');
+    const {For} = require('../Instrucciones/For');
+    const {While} = require('../Instrucciones/While');
+    
     const {Sentencia_imprime} = require('../Instrucciones/Sentencia_imprime');
     const {Opcion_metodo_funcion} = require('../Otros/Opcion_metodo_funcion');
-    const {Do_while} = require('../Instrucciones/Do_while');
-    const {Incre_decre} = require('../Instrucciones/incre_decre');
-    const {For} = require('../Instrucciones/For');
     const {Llamada_metodo} = require('../Instrucciones/Llamada_metodo');
     const {Parametro} = require('../Instrucciones/Parametro');
-    const {Declaracion_adentro_de_metodos_funciones} = require('../Otros/Declaracion_adentro_de_metodos_funciones');
     const {Sentencia_switch} = require('../Instrucciones/Sentencia_switch');
     const {Ins_case} = require('../Instrucciones/Ins_case');
     const {Ins_Default} = require('../Instrucciones/Ins_Default');
     const {Bloque_cases} = require('../Instrucciones/Bloque_cases');
+
+    /* METODOS/FUNCIONES */
+    const {Return_metodo} = require('../Instrucciones/Return_metodo');
+    const {Return_funcion} = require('../Instrucciones/Return_funcion');
+    const {Continue} = require('../Expresiones/Continue');
+    const {Break} = require('../Expresiones/Break');
+
+
+    /* DECLARACIONES Y ASIGNANIOES */
+    const {Parametros} = require('../Otros/Parametros');
     const {DeclaracionMetodo} = require('../Instrucciones/DeclaracionMetodo');
     const {DeclaracionFuncion} = require('../Instrucciones/DeclaracionFuncion');
     const {DeclaracionGlobales} = require('../Instrucciones/DeclaracionGlobales');
+
+    /* OTROS */
+    const {Importe} = require('../Otros/Importe');
+    const {Incre_decre} = require('../Instrucciones/incre_decre');
+
 
     let CErrores=require('../ManejoErrores/Errores');
     let CNodoError=require('../ManejoErrores/NodoError');
@@ -53,7 +67,7 @@ no  ([\"]*)
 entero [0-9]+
 decimal [0-9]+("."[0-9]+)
 caracter (\'[^☼]\')
-//stringliteral (\"[^☼]*[\\"]*\")                  // FALTA ARREGLAR EL CASO DE COMILLAS ADENTRO DE COMILLAS 
+//stringliteral (\"[^☼]*[\\"]*\") 
 stringliteral (\"[^"]*\") 
 
 id ([a-zA-Z_])[a-zA-Z0-9_]*
@@ -91,7 +105,7 @@ id ([a-zA-Z_])[a-zA-Z0-9_]*
 "."                   return '.'
 
 "<="                  return '<='
-">="                 {console.log("||||| MAYOR O IGUAL ||||"); return '>=' ;}
+">="                  return '>='
 "<"                   return '<'
 ">"                   return '>'
 
@@ -206,8 +220,8 @@ BLOQUE_DECLARACIONES_METFUNVAR : '{' LISTA_DECLARACIONES_METFUNVAR_P '}' {$$ = $
                                ;
 
 
-LISTA_DECLARACIONES_METFUNVAR_P: LISTA_DECLARACIONES_METFUNVAR_P DECLARACION_AMBITO_CLASE { $1.push($2); $$ = $1; }
-                               | DECLARACION_AMBITO_CLASE      { $$ = [$1]; }
+LISTA_DECLARACIONES_METFUNVAR_P: LISTA_DECLARACIONES_METFUNVAR_P AMBITO { $1.push($2); $$ = $1; }
+                               | AMBITO      { $$ = [$1]; }
                                ;
 
 
@@ -215,7 +229,7 @@ OPCION_ID_MAIN: 'main'  {$$ = $1}
               | id    {$$ = $1}
               ;
 
-DECLARACION_AMBITO_CLASE: 'void' OPCION_ID_MAIN '(' OPCION_METODO_FUNCION   { $$ = new DeclaracionMetodo($1, $2 , $4 ,  this._$.first_line , this._$.first_column);console.log("METODO");}
+AMBITO: 'void' OPCION_ID_MAIN '(' OPCION_METODO_FUNCION   { $$ = new DeclaracionMetodo($1, $2 , $4 ,  this._$.first_line , this._$.first_column);console.log("METODO");}
                         | TIPO id '(' OPCION_METODO_FUNCION { $$ = new DeclaracionFuncion($1, $2 , $4 ,  this._$.first_line , this._$.first_column); console.log("FUNCION"); }
                         | TIPO LISTA_IDS ASIGNACION {$$ = new DeclaracionGlobales($1,$2,$3,this._$.first_line , this._$.first_column ); console.log(" LISTA ids solo globales ");}
                         | error {  console.error('Este es un error sintáctico: [' + yytext + ']  en la linea: ' +  this._$.first_line + ', en la columna: ' + this._$.first_column); CErrores.Errores.add(new CNodoError.NodoError("Sintactico","error::=       "+yytext+"    Columna:"+ this._$.first_column ,this._$.first_line)); }  
@@ -234,14 +248,14 @@ INSTRUCCIONES : INSTRUCCIONES INSTRUCCION { $1.push($2); $$ = $1; }
               | error {  console.error('Este es un error sintáctico: [' + yytext + ']  en la linea: ' +  this._$.first_line + ', en la columna: ' + this._$.first_column); CErrores.Errores.add(new CNodoError.NodoError("Sintactico","error::=       "+yytext+"    Columna:"+ this._$.first_column ,this._$.first_line)); }  
               ;
 
-INSTRUCCION : SENTENCIAIMPRIME     {$$ = $1;}
+INSTRUCCION : SENTENCIA_PRINT     {$$ = $1;}
             | WHILE                {$$ = $1;}
             | IF                   {$$ = $1;}
-            | DOWHILE              {$$ = $1;}
+            | DO_WHILE              {$$ = $1;}
             | SENTENCIA_FOR        {$$ = $1;}
             | SENTENCIA_SWITCH      {$$ = $1;}
             | ASIGNACION_SIMPLE     {$$ = $1;}
-            | DECLARACION_ADENTRO_DE_METODOS_FUNCIONES {$$ = $1;}
+            | Parametros {$$ = $1;}
             | SENTENCIA_CONTINUE {$$ = $1; console.log("continue");}
             | SENTENCIA_RETURN_FUNCION {$$ = $1;}
             | SENTENCIA_RETURN_METODO{$$ = $1;}
@@ -255,10 +269,10 @@ TIPO : 'int' {$$ = new Type(types.INT);}
      ;
 
 
-SENTENCIA_FOR:'for' '(' DEC_for ';' EXPRESION ';' INCRE_DECRE ')' BLOQUE_INSTRUCCIONES {esta_en_un_ciclo = true;console.log("esta en un ciclo for");$$ = new For($3, $5,$7 , $9 , this._$.first_line , this._$.first_column); esta_en_un_ciclo = false; console.log("salio del ciclo for");}
+SENTENCIA_FOR:'for' '(' DECLARACION_FOR ';' EXPRESION ';' INCRE_DECRE ')' BLOQUE_INSTRUCCIONES {esta_en_un_ciclo = true;console.log("esta en un ciclo for");$$ = new For($3, $5,$7 , $9 , this._$.first_line , this._$.first_column); esta_en_un_ciclo = false; console.log("salio del ciclo for");}
              ;
 
-DEC_for: TIPO 'id' '=' EXPRESION {$$ = new Declaracion($1 , $2 ,$4 , this._$.first_line , this._$.first_column );}
+DECLARACION_FOR: TIPO 'id' '=' EXPRESION {$$ = new Declaracion($1 , $2 ,$4 , this._$.first_line , this._$.first_column );}
        | 'id' '=' EXPRESION {$$ = new  Asignacion($1 , $3 , this._$.first_line , this._$.first_column ) ; }
        ;
 INCRE_DECRE: 'id' 'incremento'  {$$ = new Incre_decre($1, "++", this._$.first_line , this._$.first_column ) ; console.log("incremento");}
@@ -266,14 +280,14 @@ INCRE_DECRE: 'id' 'incremento'  {$$ = new Incre_decre($1, "++", this._$.first_li
            ;
 
 
-DOWHILE: 'do' BLOQUE_INSTRUCCIONES 'while' CONDICION ';' {$$ = new Do_while($4 ,$2 , this._$.first_line , this._$.first_column );}
+DO_WHILE: 'do' BLOQUE_INSTRUCCIONES 'while' CONDICION ';' {$$ = new Do_while($4 ,$2 , this._$.first_line , this._$.first_column );}
        ;
 
-SENTENCIAIMPRIME: 'System' '.' 'out' '.'  OPCIONIMPRIME '(' EXPRESION ')' ';' { $$ = new Sentencia_imprime($5,$7, this._$.first_line, this._$.first_column);}
+SENTENCIA_PRINT: 'System' '.' 'out' '.'  OPCION_PRINT '(' EXPRESION ')' ';' { $$ = new Sentencia_imprime($5,$7, this._$.first_line, this._$.first_column);}
                 ;
 
 
-OPCIONIMPRIME : 'println' {$$ = $1 ; }
+OPCION_PRINT : 'println' {$$ = $1 ; }
 	       | 'print' {$$ = $1;}
               | error {  console.error('Este es un error sintáctico: [' + yytext + ']  en la linea: ' +  this._$.first_line + ', en la columna: ' + this._$.first_column); CErrores.Errores.add(new CNodoError.NodoError("Sintactico","error::=       "+yytext+"    Columna:"+ this._$.first_column ,this._$.first_line)); }  
               ; 
@@ -330,43 +344,43 @@ EXPRESION : '-' EXPRESION %prec UMENOS	    { $$ = new Arithmetic($2, null, '-', 
 SENTENCIA_SWITCH: 'switch' '(' EXPRESION ')' BLOQUE_CASES {$$ = new Sentencia_switch($3,$5,this._$.first_line, this._$.first_column)}
                 ;
               
-BLOQUE_CASES:  '{' LISTACASES OPCIONDEFAULT '}' {$$ = new Bloque_cases($2 ,$3);}    
+BLOQUE_CASES:  '{' LISTA_CASE OPCIONDEFAULT '}' {$$ = new Bloque_cases($2 ,$3);}    
             | '{' '}'    {$$ = [];}
             ;
         
-OPCIONDEFAULT:'default' ':' BLOQUEINST_CON_OPCION_VACIA  SENTENCIA_BREAK { $$ = new Ins_Default($3,$4,this._$.first_line, this._$.first_column);}
+OPCIONDEFAULT:'default' ':' BLOQUE_SWITCH  SENTENCIA_BREAK { $$ = new Ins_Default($3,$4,this._$.first_line, this._$.first_column);}
              | {$$ = [];} 
              ;
 
 
 
-LISTACASES: LISTACASES CASES_P  { $1.push($2); $$ = $1; }
+LISTA_CASE: LISTA_CASE CASES_P  { $1.push($2); $$ = $1; }
           | CASES_P  { $$ = [$1]; }
           ;
-CASES_P :'case' EXPRESION ':' BLOQUEINST_CON_OPCION_VACIA SENTENCIA_BREAK { $$ = new Ins_case($2,$4,$5,this._$.first_line, this._$.first_column);}
+CASES_P :'case' EXPRESION ':' BLOQUE_SWITCH SENTENCIA_BREAK { $$ = new Ins_case($2,$4,$5,this._$.first_line, this._$.first_column);}
         ;
 
 SENTENCIA_BREAK: 'break' ';'  {$$ = new Break(this._$.first_line, this._$.first_column) ;}
                ;
 
-BLOQUEINST_CON_OPCION_VACIA:  INSTRUCCIONESWITCH {$$=$1;}
+BLOQUE_SWITCH:  LISTA_INST_SWITCH {$$=$1;}
                             | {$$=[];}
                             ;
 
 
-INSTRUCCIONESWITCH : INSTRUCCIONESWITCH INSTRUCCIONSWITCH { $1.push($2); $$ = $1; }
-              | INSTRUCCIONSWITCH               { $$ = [$1]; }
+LISTA_INST_SWITCH : LISTA_INST_SWITCH INST_EN_SWITCH { $1.push($2); $$ = $1; }
+              | INST_EN_SWITCH               { $$ = [$1]; }
               | error {  console.error('Este es un error sintáctico: [' + yytext + ']  en la linea: ' +  this._$.first_line + ', en la columna: ' + this._$.first_column); CErrores.Errores.add(new CNodoError.NodoError("Sintactico","error::=       "+yytext+"    Columna:"+ this._$.first_column ,this._$.first_line)); }  
               ;
 // LO MISMO PERO NO TIENE EL BREAK para que no se encicle 
-INSTRUCCIONSWITCH : SENTENCIAIMPRIME     {$$ = $1;}
+INST_EN_SWITCH : SENTENCIA_PRINT     {$$ = $1;}
             | WHILE                {$$ = $1;}
             | IF                   {$$ = $1;}
-            | DOWHILE              {$$ = $1;}
+            | DO_WHILE              {$$ = $1;}
             | SENTENCIA_FOR        {$$ = $1;}
             | SENTENCIA_SWITCH      {$$ = $1;}
             | ASIGNACION_SIMPLE     {$$ = $1;}
-            | DECLARACION_ADENTRO_DE_METODOS_FUNCIONES    {$$ = $1;}
+            | Parametros    {$$ = $1;}
             | SENTENCIA_CONTINUE {$$ = $1;}
             | SENTENCIA_RETURN_FUNCION {$$ = $1;}
             | SENTENCIA_RETURN_METODO{$$ = $1;}
@@ -408,7 +422,7 @@ LISTA_EXPRESIONES_LLAMADA_METODO: LISTA_EXPRESIONES_LLAMADA_METODO ',' EXPRESION
 
 
 
-DECLARACION_ADENTRO_DE_METODOS_FUNCIONES: TIPO LISTA_IDS ASIGNACION { $$ = new Declaracion_adentro_de_metodos_funciones($1,$2,$3 ,this._$.first_line , this._$.first_column ); console.log("dec adentro de metodos");}
+Parametros: TIPO LISTA_IDS ASIGNACION { $$ = new Parametros($1,$2,$3 ,this._$.first_line , this._$.first_column ); console.log("dec adentro de metodos");}
                                         ;
 
 

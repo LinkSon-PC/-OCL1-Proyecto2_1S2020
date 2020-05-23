@@ -71,12 +71,12 @@
     recoverable: (boolean: TRUE when the parser has a error recovery rule available for this particular error)
   }
 */
-var graProyecto = (function () {
+var Grammar = (function () {
     var o = function (k, v, o, l) { for (o = o || {}, l = k.length; l--; o[k[l]] = v)
         ; return o; }, $V0 = [1, 10], $V1 = [1, 8], $V2 = [1, 9], $V3 = [2, 5, 10, 13], $V4 = [2, 5, 13], $V5 = [1, 28], $V6 = [1, 26], $V7 = [1, 29], $V8 = [1, 30], $V9 = [1, 31], $Va = [1, 32], $Vb = [1, 33], $Vc = [2, 17, 21, 44, 45, 46, 47, 48], $Vd = [12, 53, 102], $Ve = [2, 122], $Vf = [1, 46], $Vg = [1, 45], $Vh = [1, 44], $Vi = [1, 49], $Vj = [1, 64], $Vk = [1, 63], $Vl = [1, 54], $Vm = [1, 55], $Vn = [1, 56], $Vo = [1, 57], $Vp = [1, 58], $Vq = [1, 59], $Vr = [1, 61], $Vs = [1, 62], $Vt = [2, 11, 17, 21, 44, 45, 46, 47, 48, 49, 56, 57, 59, 65, 89, 98, 103, 104], $Vu = [1, 68], $Vv = [1, 72], $Vw = [1, 71], $Vx = [1, 73], $Vy = [1, 74], $Vz = [1, 75], $VA = [1, 76], $VB = [1, 77], $VC = [1, 78], $VD = [1, 79], $VE = [1, 80], $VF = [1, 81], $VG = [1, 82], $VH = [1, 83], $VI = [1, 84], $VJ = [12, 28, 67, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 94, 102], $VK = [1, 113], $VL = [1, 111], $VM = [1, 110], $VN = [1, 108], $VO = [1, 107], $VP = [1, 109], $VQ = [1, 112], $VR = [1, 117], $VS = [1, 115], $VT = [1, 116], $VU = [28, 102], $VV = [2, 11, 17, 21, 44, 45, 46, 47, 48, 49, 56, 57, 59, 65, 66, 89, 98, 103, 104], $VW = [11, 17, 44, 45, 46, 47, 48, 49, 56, 57, 59, 65, 89, 98, 103, 104], $VX = [1, 141], $VY = [12, 28, 67, 69, 74, 75, 76, 77, 78, 79, 80, 81, 94, 102], $VZ = [12, 28, 67, 69, 70, 71, 74, 75, 76, 77, 78, 79, 80, 81, 94, 102], $V_ = [12, 28, 74, 75, 76, 77, 78, 79, 80, 81, 94, 102], $V$ = [12, 28, 78, 79, 80, 81, 94, 102], $V01 = [1, 155], $V11 = [1, 201], $V21 = [17, 93, 97], $V31 = [1, 221], $V41 = [2, 97], $V51 = [11, 44, 45, 46, 47, 48, 49, 56, 57, 59, 65, 89, 98, 103, 104];
     var parser = { trace: function trace() { },
         yy: {},
-        symbols_: { "error": 2, "INICIO": 3, "LISTA_IMPORTES_CLASES": 4, "EOF": 5, "LISTA_IMPORTE": 6, "LISTA_CLASES": 7, "IMPORTE": 8, "SENTENCIA_CLASE": 9, "import": 10, "id": 11, ";": 12, "class": 13, "BLOQUE_DECLARACIONES_METFUNVAR": 14, "{": 15, "LISTA_DECLARACIONES_METFUNVAR_P": 16, "}": 17, "DECLARACION_AMBITO_CLASE": 18, "OPCION_ID_MAIN": 19, "main": 20, "void": 21, "(": 22, "OPCION_METODO_FUNCION": 23, "TIPO": 24, "LISTA_IDS": 25, "ASIGNACION": 26, "LISTA_PARAMETROS_CON_TIPO": 27, ")": 28, "BLOQUE_INSTRUCCIONES": 29, "INSTRUCCIONES": 30, "INSTRUCCION": 31, "SENTENCIAIMPRIME": 32, "WHILE": 33, "IF": 34, "DOWHILE": 35, "SENTENCIA_FOR": 36, "SENTENCIA_SWITCH": 37, "ASIGNACION_SIMPLE": 38, "DECLARACION_ADENTRO_DE_METODOS_FUNCIONES": 39, "SENTENCIA_CONTINUE": 40, "SENTENCIA_RETURN_FUNCION": 41, "SENTENCIA_RETURN_METODO": 42, "SENTENCIA_BREAK": 43, "int": 44, "String": 45, "boolean": 46, "double": 47, "char": 48, "for": 49, "DEC_for": 50, "EXPRESION": 51, "INCRE_DECRE": 52, "=": 53, "incremento": 54, "decremento": 55, "do": 56, "while": 57, "CONDICION": 58, "System": 59, ".": 60, "out": 61, "OPCIONIMPRIME": 62, "println": 63, "print": 64, "if": 65, "else": 66, "-": 67, "!": 68, "+": 69, "*": 70, "/": 71, "%": 72, "^": 73, "<": 74, ">": 75, ">=": 76, "<=": 77, "==": 78, "!=": 79, "||": 80, "&&": 81, "decimal": 82, "true": 83, "false": 84, "STRING_LITERAL": 85, "EXPRESION_METODO": 86, "caracter": 87, "entero": 88, "switch": 89, "BLOQUE_CASES": 90, "LISTACASES": 91, "OPCIONDEFAULT": 92, "default": 93, ":": 94, "BLOQUEINST_CON_OPCION_VACIA": 95, "CASES_P": 96, "case": 97, "break": 98, "INSTRUCCIONESWITCH": 99, "INSTRUCCIONSWITCH": 100, "LISTA_EXPRESIONES_LLAMADA_METODO": 101, ",": 102, "continue": 103, "return": 104, "SENTENCIA_BREAK_CON_CICLO": 105, "$accept": 0, "$end": 1 },
+        symbols_: { "error": 2, "INICIO": 3, "LISTA_IMPORTES_CLASES": 4, "EOF": 5, "LISTA_IMPORTE": 6, "LISTA_CLASES": 7, "IMPORTE": 8, "SENTENCIA_CLASE": 9, "import": 10, "id": 11, ";": 12, "class": 13, "BLOQUE_DECLARACIONES_METFUNVAR": 14, "{": 15, "LISTA_DECLARACIONES_METFUNVAR_P": 16, "}": 17, "AMBITO": 18, "OPCION_ID_MAIN": 19, "main": 20, "void": 21, "(": 22, "OPCION_METODO_FUNCION": 23, "TIPO": 24, "LISTA_IDS": 25, "ASIGNACION": 26, "LISTA_PARAMETROS_CON_TIPO": 27, ")": 28, "BLOQUE_INSTRUCCIONES": 29, "INSTRUCCIONES": 30, "INSTRUCCION": 31, "SENTENCIA_PRINT": 32, "WHILE": 33, "IF": 34, "DO_WHILE": 35, "SENTENCIA_FOR": 36, "SENTENCIA_SWITCH": 37, "ASIGNACION_SIMPLE": 38, "Parametros": 39, "SENTENCIA_CONTINUE": 40, "SENTENCIA_RETURN_FUNCION": 41, "SENTENCIA_RETURN_METODO": 42, "SENTENCIA_BREAK": 43, "int": 44, "String": 45, "boolean": 46, "double": 47, "char": 48, "for": 49, "DECLARACION_FOR": 50, "EXPRESION": 51, "INCRE_DECRE": 52, "=": 53, "incremento": 54, "decremento": 55, "do": 56, "while": 57, "CONDICION": 58, "System": 59, ".": 60, "out": 61, "OPCION_PRINT": 62, "println": 63, "print": 64, "if": 65, "else": 66, "-": 67, "!": 68, "+": 69, "*": 70, "/": 71, "%": 72, "^": 73, "<": 74, ">": 75, ">=": 76, "<=": 77, "==": 78, "!=": 79, "||": 80, "&&": 81, "decimal": 82, "true": 83, "false": 84, "STRING_LITERAL": 85, "EXPRESION_METODO": 86, "caracter": 87, "entero": 88, "switch": 89, "BLOQUE_CASES": 90, "LISTA_CASE": 91, "OPCIONDEFAULT": 92, "default": 93, ":": 94, "BLOQUE_SWITCH": 95, "CASES_P": 96, "case": 97, "break": 98, "LISTA_INST_SWITCH": 99, "INST_EN_SWITCH": 100, "LISTA_EXPRESIONES_LLAMADA_METODO": 101, ",": 102, "continue": 103, "return": 104, "SENTENCIA_BREAK_CON_CICLO": 105, "$accept": 0, "$end": 1 },
         terminals_: { 2: "error", 5: "EOF", 10: "import", 11: "id", 12: ";", 13: "class", 15: "{", 17: "}", 20: "main", 21: "void", 22: "(", 28: ")", 44: "int", 45: "String", 46: "boolean", 47: "double", 48: "char", 49: "for", 53: "=", 54: "incremento", 55: "decremento", 56: "do", 57: "while", 59: "System", 60: ".", 61: "out", 63: "println", 64: "print", 65: "if", 66: "else", 67: "-", 68: "!", 69: "+", 70: "*", 71: "/", 72: "%", 73: "^", 74: "<", 75: ">", 76: ">=", 77: "<=", 78: "==", 79: "!=", 80: "||", 81: "&&", 82: "decimal", 83: "true", 84: "false", 85: "STRING_LITERAL", 87: "caracter", 88: "entero", 89: "switch", 93: "default", 94: ":", 97: "case", 98: "break", 102: ",", 103: "continue", 104: "return" },
         productions_: [0, [3, 2], [3, 2], [3, 2], [3, 1], [4, 2], [6, 2], [6, 1], [7, 2], [7, 1], [8, 3], [9, 3], [9, 1], [14, 3], [14, 2], [14, 1], [16, 2], [16, 1], [19, 1], [19, 1], [18, 4], [18, 4], [18, 3], [18, 1], [23, 3], [23, 2], [30, 2], [30, 1], [30, 1], [31, 1], [31, 1], [31, 1], [31, 1], [31, 1], [31, 1], [31, 1], [31, 1], [31, 1], [31, 1], [31, 1], [31, 1], [24, 1], [24, 1], [24, 1], [24, 1], [24, 1], [36, 9], [50, 4], [50, 3], [52, 2], [52, 2], [35, 5], [32, 9], [62, 1], [62, 1], [62, 1], [33, 3], [34, 3], [34, 5], [34, 5], [58, 3], [29, 3], [29, 2], [51, 2], [51, 2], [51, 3], [51, 3], [51, 3], [51, 3], [51, 3], [51, 3], [51, 3], [51, 3], [51, 3], [51, 3], [51, 3], [51, 3], [51, 3], [51, 3], [51, 1], [51, 1], [51, 1], [51, 1], [51, 1], [51, 1], [51, 1], [51, 3], [37, 5], [90, 4], [90, 2], [92, 4], [92, 0], [91, 2], [91, 1], [96, 5], [43, 2], [95, 1], [95, 0], [99, 2], [99, 1], [99, 1], [100, 1], [100, 1], [100, 1], [100, 1], [100, 1], [100, 1], [100, 1], [100, 1], [100, 1], [100, 1], [100, 1], [38, 4], [38, 5], [38, 4], [86, 4], [86, 3], [86, 1], [101, 3], [101, 1], [39, 3], [25, 3], [25, 1], [26, 3], [26, 1], [27, 4], [27, 2], [40, 2], [42, 2], [41, 3], [105, 2]],
         performAction: function anonymous(yytext, yyleng, yylineno, yy, yystate /* action[1] */, $$ /* vstack */, _$ /* lstack */) {
@@ -385,7 +385,7 @@ var graProyecto = (function () {
                     this.$ = $$[$0 - 2];
                     break;
                 case 120:
-                    this.$ = new Declaracion_adentro_de_metodos_funciones($$[$0 - 2], $$[$0 - 1], $$[$0], this._$.first_line, this._$.first_column);
+                    this.$ = new Parametros($$[$0 - 2], $$[$0 - 1], $$[$0], this._$.first_line, this._$.first_column);
                     console.log("dec adentro de metodos");
                     break;
                 case 123:
@@ -626,41 +626,47 @@ var graProyecto = (function () {
         } };
     /* cada importe es un NODO del arbol ATS
      el patron interprete dice que se tiene que crear todo modular una clase por nodo */
+    /* VALORES PRIMITIVOS */
     const { Primitive } = require('../Expresiones/Primitive');
     const { Arithmetic } = require('../Expresiones/Arithmetic');
     const { Relational } = require('../Expresiones/Relational');
-    const { Continue } = require('../Expresiones/Continue');
-    const { Break } = require('../Expresiones/Break');
     const { Logic } = require('../Expresiones/Logic');
     const { Identificador } = require('../Expresiones/Identificador');
-    const { Print } = require('../Instrucciones/Print');
-    const { If } = require('../Instrucciones/If');
-    const { While } = require('../Instrucciones/While');
     const { Declaracion } = require('../Instrucciones/Declaracion');
     const { Asignacion } = require('../Instrucciones/Asignacion');
     const { Excepcion } = require('../utils/Exception');
     const { Type, types } = require('../utils/Type');
+    /* CONTRUCCION AST */
     const { Tree } = require('../Simbols/Tree');
-    const { Importe } = require('../Otros/Importe');
-    const { ClaseInstruccion } = require('../Otros/ClaseInstruccion');
     const { Inicio } = require('../Otros/Inicio');
-    const { Return_metodo } = require('../Instrucciones/Return_metodo');
-    const { Return_funcion } = require('../Instrucciones/Return_funcion');
+    /* INSTRUCCIONES */
+    const { ClaseInstruccion } = require('../Otros/ClaseInstruccion');
+    const { Print } = require('../Instrucciones/Print');
+    const { If } = require('../Instrucciones/If');
+    const { Do_while } = require('../Instrucciones/Do_while');
+    const { For } = require('../Instrucciones/For');
+    const { While } = require('../Instrucciones/While');
     const { Sentencia_imprime } = require('../Instrucciones/Sentencia_imprime');
     const { Opcion_metodo_funcion } = require('../Otros/Opcion_metodo_funcion');
-    const { Do_while } = require('../Instrucciones/Do_while');
-    const { Incre_decre } = require('../Instrucciones/incre_decre');
-    const { For } = require('../Instrucciones/For');
     const { Llamada_metodo } = require('../Instrucciones/Llamada_metodo');
     const { Parametro } = require('../Instrucciones/Parametro');
-    const { Declaracion_adentro_de_metodos_funciones } = require('../Otros/Declaracion_adentro_de_metodos_funciones');
     const { Sentencia_switch } = require('../Instrucciones/Sentencia_switch');
     const { Ins_case } = require('../Instrucciones/Ins_case');
     const { Ins_Default } = require('../Instrucciones/Ins_Default');
     const { Bloque_cases } = require('../Instrucciones/Bloque_cases');
+    /* METODOS/FUNCIONES */
+    const { Return_metodo } = require('../Instrucciones/Return_metodo');
+    const { Return_funcion } = require('../Instrucciones/Return_funcion');
+    const { Continue } = require('../Expresiones/Continue');
+    const { Break } = require('../Expresiones/Break');
+    /* DECLARACIONES Y ASIGNANIOES */
+    const { Parametros } = require('../Otros/Parametros');
     const { DeclaracionMetodo } = require('../Instrucciones/DeclaracionMetodo');
     const { DeclaracionFuncion } = require('../Instrucciones/DeclaracionFuncion');
     const { DeclaracionGlobales } = require('../Instrucciones/DeclaracionGlobales');
+    /* OTROS */
+    const { Importe } = require('../Otros/Importe');
+    const { Incre_decre } = require('../Instrucciones/incre_decre');
     let CErrores = require('../ManejoErrores/Errores');
     let CNodoError = require('../ManejoErrores/NodoError');
     var esta_en_un_ciclo = false;
@@ -1042,7 +1048,6 @@ var graProyecto = (function () {
                         return 77;
                         break;
                     case 23:
-                        console.log("||||| MAYOR O IGUAL ||||");
                         return 76;
                         break;
                     case 24:
@@ -1188,9 +1193,9 @@ var graProyecto = (function () {
     return new Parser;
 })();
 if (typeof require !== 'undefined' && typeof exports !== 'undefined') {
-    exports.parser = graProyecto;
-    exports.Parser = graProyecto.Parser;
-    exports.parse = function () { return graProyecto.parse.apply(graProyecto, arguments); };
+    exports.parser = Grammar;
+    exports.Parser = Grammar.Parser;
+    exports.parse = function () { return Grammar.parse.apply(Grammar, arguments); };
     exports.main = function commonjsMain(args) {
         if (!args[1]) {
             console.log('Usage: ' + args[0] + ' FILE');

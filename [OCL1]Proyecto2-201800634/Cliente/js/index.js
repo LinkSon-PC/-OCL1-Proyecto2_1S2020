@@ -103,40 +103,6 @@ function agregarArchivo() {
 
 
 
-
-
-
-    var contador=0;
-function get_cont(){
-    return contador++;
-}
-
-var vent_focus="pestana1";
-function get_vent(){
-    return vent_focus;
-}
-
-function set_vent(vent){
-    vent_focus=vent;
-}
-
-var lista=new Array();
-function linkedlist(pestana,nombre) {
-    var obj=new Object();
-    obj.pestana=pestana;
-    obj.nombre=nombre;
-    lista.push(obj);
-}
-
-function deletepes(pestana){
-    for(var i=0;i<lista.length;i++){
-        if(lista[i].pestana==pestana){
-            delete lista[i];
-        }
-    }
-}
-
-/*--------------------------------------Funcion Al Cambiar Ventana---------------------------------------*/
 function index(pestanias, pestania) {
     var id=pestania.replace('pestana','');
     set_vent('textarea'+id);
@@ -184,7 +150,7 @@ function index(pestanias, pestania) {
     }catch(error) {}
 }
 
-/*---------------------------------------Funcion Agregar Pestania----------------------------------------*/
+
 function AgregarPestana() {
     var x=get_cont();
     var lu=document.getElementById("lista");
@@ -236,7 +202,6 @@ function QuitarPestana(){
 }
 
 
-/*-----------------------------------------------File---------------------------------------------------*/
 function AbrirArchivo(files){
     var file = files[0];
     var reader = new FileReader();
@@ -326,20 +291,17 @@ function analisis() {
 }
 
 
-
-
 function errores() {
     var ventana_actual=document.getElementById(get_vent());
   var texto=ventana_actual.value;
-  alert("ENTRADA: "+ texto);
+  //alert("ENTRADA: "+ texto);
   var url = 'http://localhost:7000/errores/';
       var error = document.getElementById("Errores");
   $.post(url, { text1: texto }, function (data, status) {
       if (status.toString() == "success") {
           console.log(data)
-          alert("El resultado es: " + data.toString());
- 
-/*                    ACA inyecto el html recibido desde el NodeJs         */     
+          //alert("El resultado es: " + data.toString());
+  
 error.innerHTML = data.toString();
       } else {
           alert("Error estado de conexion:" + status);
@@ -362,7 +324,7 @@ function reportes() {
      var copias_div = document.getElementById("copias");
      $.post(url, { text1: texto1 , text2: texto2 }, function (data, status) {
            if (status.toString() == "success") {
-               console.log(data)
+               //console.log(data)
               copias_div.innerHTML = data;    
      
            } else {
@@ -376,7 +338,7 @@ function reportes() {
 function ats() {
     var ventana_actual=document.getElementById(get_vent());
      var texto=ventana_actual.value;
-     alert("ENTRADA: "+ texto);
+     //alert("ENTRADA: "+ texto);
      var url = 'http://localhost:7000/AST/';
      var rep = document.getElementById("ats");
      var tituloast = document.getElementById("tituloAST");
@@ -399,4 +361,40 @@ function ats() {
          }
      });
    
+   }
+
+   
+
+
+
+
+
+   var contador=0;
+   function get_cont(){
+       return contador++;
+   }
+   
+   var vent_focus="pestana1";
+   function get_vent(){
+       return vent_focus;
+   }
+   
+   function set_vent(vent){
+       vent_focus=vent;
+   }
+   
+   var lista=new Array();
+   function linkedlist(pestana,nombre) {
+       var obj=new Object();
+       obj.pestana=pestana;
+       obj.nombre=nombre;
+       lista.push(obj);
+   }
+   
+   function deletepes(pestana){
+       for(var i=0;i<lista.length;i++){
+           if(lista[i].pestana==pestana){
+               delete lista[i];
+           }
+       }
    }
