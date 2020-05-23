@@ -3,7 +3,7 @@ import {Table} from "../Simbols/Table";
 import {Tree} from "../Simbols/Tree";
 import {Type} from "../utils/Type";
 import {types} from "../utils/Type";
-import {Metodo} from '../REPORTES/Metodo';
+import {Metodo} from './Metodo';
 export class Clase {
   
     id:string;

@@ -7,7 +7,7 @@ const Break_1 = require("../Expresiones/Break");
 const Return_funcion_1 = require("../Instrucciones/Return_funcion");
 const Return_metodo_1 = require("../Instrucciones/Return_metodo");
 const GraficaArbolAts_1 = require("../ManejoErrores/GraficaArbolAts");
-const Rep_1 = require("../REPORTES/Rep");
+const Reporte_1 = require("../Reportes/Reporte");
 let CNodoError = require('../ManejoErrores/NodoError');
 let CErrores = require('../ManejoErrores/Errores');
 /**
@@ -28,8 +28,8 @@ class Opcion_metodo_funcion extends Node_1.Node {
     }
     execute(table, tree) {
         /* UNA CLASE POSEE SU PROPIO AMBITO DE VARIABLES POR ESO LE CREO UNA TABLE */
-        if (Rep_1.Rep.t1 == true || Rep_1.Rep.t2 == true) {
-            Rep_1.Rep.addPARAMETROS(Rep_1.Rep.nombreMetodoActual, this.listaParams);
+        if (Reporte_1.Reporte.t1 == true || Reporte_1.Reporte.t2 == true) {
+            Reporte_1.Reporte.addPARAMETROS(Reporte_1.Reporte.nombreMetodoActual, this.listaParams);
         }
         if (this.listaParams.length != 0) {
             GraficaArbolAts_1.GraficaArbolAts.add("<li data-jstree='{ \"opened\" : true }'>LISTA DE PARAMETROS\n");

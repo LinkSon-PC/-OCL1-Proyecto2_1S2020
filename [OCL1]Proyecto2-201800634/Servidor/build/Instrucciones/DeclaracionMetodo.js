@@ -6,8 +6,8 @@ const Return_funcion_1 = require("./Return_funcion");
 let CNodoError = require('../ManejoErrores/NodoError');
 let CErrores = require('../ManejoErrores/Errores');
 const GraficaArbolAts_1 = require("../ManejoErrores/GraficaArbolAts");
-const Rep_1 = require("../REPORTES/Rep");
-const Metodo_1 = require("../REPORTES/Metodo");
+const Reporte_1 = require("../Reportes/Reporte");
+const Metodo_1 = require("../Reportes/Metodo");
 class DeclaracionMetodo extends Node_1.Node {
     constructor(type, identifier, value, line, column) {
         super(new Type_1.Type(Type_1.types.VOID), line, column);
@@ -15,9 +15,9 @@ class DeclaracionMetodo extends Node_1.Node {
         this.value = value;
     }
     execute(table, tree) {
-        if (Rep_1.Rep.t1 == true || Rep_1.Rep.t2 == true) {
-            Rep_1.Rep.nombreMetodoActual = this.identifier;
-            Rep_1.Rep.addMetodo(Rep_1.Rep.claseActual.id, new Metodo_1.Metodo(this.identifier, this.type.toString()));
+        if (Reporte_1.Reporte.t1 == true || Reporte_1.Reporte.t2 == true) {
+            Reporte_1.Reporte.nombreMetodoActual = this.identifier;
+            Reporte_1.Reporte.addMetodo(Reporte_1.Reporte.claseActual.id, new Metodo_1.Metodo(this.identifier, this.type.toString()));
         }
         console.log(this.type.toString());
         GraficaArbolAts_1.GraficaArbolAts.add("<li data-jstree='{ \"opened\" : true }'>DeclaracionMetodos\n");

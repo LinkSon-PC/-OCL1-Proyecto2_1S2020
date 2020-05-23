@@ -2,7 +2,7 @@ import { Node } from "../Abstract/Node";
 import { Table } from "../Simbols/Table";
 import { Tree } from "../Simbols/Tree";
 import { GraficaArbolAts } from "../ManejoErrores/GraficaArbolAts";
-import { Rep } from "../REPORTES/Rep";
+import { Reporte } from "../Reportes/Reporte";
 
 /**
  * @class RETURN PARA LAS FUNCIONES 
@@ -22,8 +22,8 @@ export class Return_funcion extends Node {
     }
 
     execute(table: Table, tree: Tree){
-        if(Rep.t1 == true || Rep.t2 == true){
-            Rep.addTIPO_RETORNO(Rep.nombreMetodoActual , "retorno de funcion (return EXPRESION;)");
+        if(Reporte.t1 == true || Reporte.t2 == true){
+            Reporte.addTIPO_RETORNO(Reporte.nombreMetodoActual , "retorno de funcion (return EXPRESION;)");
         }
 
 

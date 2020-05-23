@@ -9,7 +9,7 @@ import { Simbol } from "../Simbols/Simbol";
 import { Return_funcion } from "../Instrucciones/Return_funcion";
 import { Return_metodo } from "../Instrucciones/Return_metodo";
 import { GraficaArbolAts } from "../ManejoErrores/GraficaArbolAts";
-import { Rep } from "../REPORTES/Rep";
+import { Reporte } from "../Reportes/Reporte";
 let CNodoError=require('../ManejoErrores/NodoError');
 let CErrores=require('../ManejoErrores/Errores');
 /**
@@ -39,8 +39,8 @@ export class Opcion_metodo_funcion extends Node {
 
     execute(table: Table, tree: Tree):any {
         /* UNA CLASE POSEE SU PROPIO AMBITO DE VARIABLES POR ESO LE CREO UNA TABLE */
-        if(Rep.t1 == true || Rep.t2 == true){
-            Rep.addPARAMETROS(Rep.nombreMetodoActual , this.listaParams);
+        if(Reporte.t1 == true || Reporte.t2 == true){
+            Reporte.addPARAMETROS(Reporte.nombreMetodoActual , this.listaParams);
         }
 
         if(this.listaParams.length != 0){

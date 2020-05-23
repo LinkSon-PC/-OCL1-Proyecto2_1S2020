@@ -14,8 +14,8 @@ let CErrores=require('../ManejoErrores/Errores');
  */
 
 import {GraficaArbolAts} from '../ManejoErrores/GraficaArbolAts'; 
-import { Rep } from "../REPORTES/Rep";
-import { Metodo } from "../REPORTES/Metodo";
+import { Reporte } from "../Reportes/Reporte";
+import { Metodo } from "../Reportes/Metodo";
 export class DeclaracionFuncion extends Node {
     type: Type;
     identifier: string;
@@ -36,9 +36,9 @@ export class DeclaracionFuncion extends Node {
     }
 
     execute(table: Table, tree: Tree) :any{
-        if(Rep.t1 == true || Rep.t2 == true){
-            Rep.nombreMetodoActual = this.identifier; 
-            Rep.addMetodo( Rep.claseActual.id , new Metodo( this.identifier , this.type.toString() ));
+        if(Reporte.t1 == true || Reporte.t2 == true){
+            Reporte.nombreMetodoActual = this.identifier; 
+            Reporte.addMetodo( Reporte.claseActual.id , new Metodo( this.identifier , this.type.toString() ));
         }
       
 

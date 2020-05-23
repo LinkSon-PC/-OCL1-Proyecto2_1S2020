@@ -7,8 +7,8 @@ import { Continue } from "../Expresiones/Continue";
 import { Break } from "../Expresiones/Break";
 import { Simbol } from "../Simbols/Simbol";
 import {GraficaArbolAts} from '../ManejoErrores/GraficaArbolAts'; 
-import { Rep } from "../REPORTES/Rep";
-import { Clase } from "../REPORTES/Clase";
+import { Reporte } from "../Reportes/Reporte";
+import { Clase } from "../Reportes/Clase";
 import { report } from "process";
 /**
  * @class Reasigna el valor de una variable existente
@@ -36,10 +36,10 @@ export class ClaseInstruccion extends Node {
 
     execute(table: Table, tree: Tree) :any{
           
-        if(Rep.t1 == true || Rep.t2 == true){
-            Rep.addClase(new Clase(this.identifier));
-            Rep.claseActual = Rep.getCLASE(this.identifier); 
-            console.log("static ACTUAL: " +Rep.claseActual);
+        if(Reporte.t1 == true || Reporte.t2 == true){
+            Reporte.addClase(new Clase(this.identifier));
+            Reporte.claseActual = Reporte.getCLASE(this.identifier); 
+            console.log("static ACTUAL: " +Reporte.claseActual);
         }
 
 

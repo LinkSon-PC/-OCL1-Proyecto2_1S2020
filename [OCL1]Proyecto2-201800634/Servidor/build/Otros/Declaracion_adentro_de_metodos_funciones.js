@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const Node_1 = require("../Abstract/Node");
 const GraficaArbolAts_1 = require("../ManejoErrores/GraficaArbolAts");
-const Rep_1 = require("../REPORTES/Rep");
+const Reporte_1 = require("../Reportes/Reporte");
 /**
  * @class Inserta una nueva variable en la tabla de simbolos
  */
@@ -16,10 +16,10 @@ class Declaracion_adentro_de_metodos_funciones extends Node_1.Node {
         this.value = value;
     }
     execute(table, tree) {
-        if (Rep_1.Rep.t1 == true || Rep_1.Rep.t2 == true) {
+        if (Reporte_1.Reporte.t1 == true || Reporte_1.Reporte.t2 == true) {
             if (this.Lista_ids.length != 0) {
                 for (let i = 0; i < this.Lista_ids.length; i++) {
-                    Rep_1.Rep.addVariable(Rep_1.Rep.nombreMetodoActual, this.Lista_ids[i], this.type.toString());
+                    Reporte_1.Reporte.addVariable(Reporte_1.Reporte.nombreMetodoActual, this.Lista_ids[i], this.type.toString());
                 }
             } //if2
         }

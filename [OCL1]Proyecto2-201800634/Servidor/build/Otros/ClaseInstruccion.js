@@ -5,8 +5,8 @@ const Table_1 = require("../Simbols/Table");
 const Continue_1 = require("../Expresiones/Continue");
 const Break_1 = require("../Expresiones/Break");
 const GraficaArbolAts_1 = require("../ManejoErrores/GraficaArbolAts");
-const Rep_1 = require("../REPORTES/Rep");
-const Clase_1 = require("../REPORTES/Clase");
+const Reporte_1 = require("../Reportes/Reporte");
+const Clase_1 = require("../Reportes/Clase");
 /**
  * @class Reasigna el valor de una variable existente
  */
@@ -25,10 +25,10 @@ class ClaseInstruccion extends Node_1.Node {
         ;
     }
     execute(table, tree) {
-        if (Rep_1.Rep.t1 == true || Rep_1.Rep.t2 == true) {
-            Rep_1.Rep.addClase(new Clase_1.Clase(this.identifier));
-            Rep_1.Rep.claseActual = Rep_1.Rep.getCLASE(this.identifier);
-            console.log("static ACTUAL: " + Rep_1.Rep.claseActual);
+        if (Reporte_1.Reporte.t1 == true || Reporte_1.Reporte.t2 == true) {
+            Reporte_1.Reporte.addClase(new Clase_1.Clase(this.identifier));
+            Reporte_1.Reporte.claseActual = Reporte_1.Reporte.getCLASE(this.identifier);
+            console.log("static ACTUAL: " + Reporte_1.Reporte.claseActual);
         }
         GraficaArbolAts_1.GraficaArbolAts.add("<li data-jstree='{ \"opened\" : true }'>CLASE\n");
         // CIERRA DE UNA VEZ PORQUE NO AVANZA RECURSIVAMENTE 

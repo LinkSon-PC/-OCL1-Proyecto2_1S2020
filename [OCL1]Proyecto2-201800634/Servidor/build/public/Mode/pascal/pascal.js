@@ -1,25 +1,22 @@
 // CodeMirror, copyright (c) by Marijn Haverbeke and others
 // Distributed under an MIT license: https://codemirror.net/LICENSE
-
-(function(mod) {
+(function (mod) {
     if (typeof exports == "object" && typeof module == "object") // CommonJS
         mod(require("../../lib/codemirror"));
     else if (typeof define == "function" && define.amd) // AMD
         define(["../../lib/codemirror"], mod);
     else // Plain browser env
         mod(CodeMirror);
-})(function(CodeMirror) {
+})(function (CodeMirror) {
     "use strict";
-
-    CodeMirror.defineMode("pascal", function() {
+    CodeMirror.defineMode("pascal", function () {
         function words(str) {
-            var obj = {},
-                words = str.split(" ");
-            for (var i = 0; i < words.length; ++i) obj[words[i]] = true;
+            var obj = {}, words = str.split(" ");
+            for (var i = 0; i < words.length; ++i)
+                obj[words[i]] = true;
             return obj;
         }
-        var keywords = words(
-            "absolute and array asm begin case const constructor destructor div do " +
+        var keywords = words("absolute and array asm begin case const constructor destructor div do " +
             "downto else end file for function goto if implementation in inherited " +
             "inline interface label mod nil not object of operator or packed procedure " +
             "program record reintroduce repeat self set shl shr string then to type " +
@@ -34,9 +31,7 @@
             "reintroduce result safecall saveregisters softfloat specialize static " +
             "stdcall stored strict unaligned unimplemented varargs virtual write");
         var atoms = { "null": true };
-
         var isOperatorChar = /[+\-*&%=<>!?|\/]/;
-
         function tokenBase(stream, state) {
             var ch = stream.next();
             if (ch == "#" && state.startOfLine) {
@@ -70,27 +65,29 @@
             }
             stream.eatWhile(/[\w\$_]/);
             var cur = stream.current();
-            if (keywords.propertyIsEnumerable(cur)) return "keyword";
-            if (atoms.propertyIsEnumerable(cur)) return "atom";
+            if (keywords.propertyIsEnumerable(cur))
+                return "keyword";
+            if (atoms.propertyIsEnumerable(cur))
+                return "atom";
             return "variable";
         }
-
         function tokenString(quote) {
-            return function(stream, state) {
-                var escaped = false,
-                    next, end = false;
+            return function (stream, state) {
+                var escaped = false, next, end = false;
                 while ((next = stream.next()) != null) {
-                    if (next == quote && !escaped) { end = true; break; }
+                    if (next == quote && !escaped) {
+                        end = true;
+                        break;
+                    }
                     escaped = !escaped && next == "\\";
                 }
-                if (end || !escaped) state.tokenize = null;
+                if (end || !escaped)
+                    state.tokenize = null;
                 return "string";
             };
         }
-
         function tokenComment(stream, state) {
-            var maybeEnd = false,
-                ch;
+            var maybeEnd = false, ch;
             while (ch = stream.next()) {
                 if (ch == ")" && maybeEnd) {
                     state.tokenize = null;
@@ -100,25 +97,21 @@
             }
             return "comment";
         }
-
         // Interface
-
         return {
-            startState: function() {
+            startState: function () {
                 return { tokenize: null };
             },
-
-            token: function(stream, state) {
-                if (stream.eatSpace()) return null;
+            token: function (stream, state) {
+                if (stream.eatSpace())
+                    return null;
                 var style = (state.tokenize || tokenBase)(stream, state);
-                if (style == "comment" || style == "meta") return style;
+                if (style == "comment" || style == "meta")
+                    return style;
                 return style;
             },
-
             electricChars: "{}"
         };
     });
-
     CodeMirror.defineMIME("text/x-pascal", "pascal");
-
 });

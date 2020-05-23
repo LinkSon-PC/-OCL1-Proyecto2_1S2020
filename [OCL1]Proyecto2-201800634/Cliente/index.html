@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 
-<head>
+ <head>
     <title>201800634</title>
     <!--  Bootstrap  -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -57,9 +57,9 @@
             });
         }
     </script>
-</head>
+ </head>
 
-<body>
+ <body>
 
 
     <!-- Navigation -->
@@ -81,6 +81,10 @@
 
                     <li class="nav-item">
                         <a class="btn btn-dark" onclick="DescargarArchivo();" id="guardar" title="Guardar">Guardar</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="btn btn-dark" onclick="reportes();" id="reporte" title="REPOTES">REPOTES</a>
                     </li>
 
 
@@ -132,51 +136,40 @@
 
             <div class="card-group">
                 <div class="card">
-                    <input id="fileInput" title="Abrir" type="file" size="50" onchange="Abrir(this.files)" class="btn btn-dark">
+                    <input id="fileInput" title="Abrir" type="file" size="50" onchange="Abrir(this.files)"
+                        class="btn btn-dark">
                     <button onclick="agregarArchivo();" title="AgregarPestana" id="btn4" class="btn btn-dark">Agregar
                         Pestana</button>
-        
-                  <div class="card-body">
-                    <div id="contenidoArchivo">
+
+                    <div class="card-body">
+                        <div id="contenidoArchivo">
+                        </div>
                     </div>
-                  </div>
                 </div>
 
                 <div class="card">
 
                     <input id="fileInput" title="Abrir" type="file" size="50" onchange="AbrirArchivo(this.files)"
-                    class="btn btn-dark">
-                <button onclick="AgregarPestana();" title="AgregarPestana" id="btn4" class="btn btn-dark">Agregar
-                    Pestana</button>
-                <button onclick="QuitarPestana();" title="QuitarPestana" id="btn5" class="btn btn-dark">Quitar
-                    Pestana</button>
+                        class="btn btn-dark">
+                    <button onclick="AgregarPestana();" title="AgregarPestana" id="btn4" class="btn btn-dark">Agregar
+                        Pestana</button>
+                    <button onclick="QuitarPestana();" title="QuitarPestana" id="btn5" class="btn btn-dark">Quitar
+                        Pestana</button>
 
-                  <div class="card-body">
-                    <div id="pestanas">
-                        <ul id=lista>
-                        </ul>
+                    <div class="card-body">
+                        <div id="pestanas">
+                            <ul id=lista>
+                            </ul>
+                        </div>
+
+                        <div id="contenidopestanas">
+                        </div>
                     </div>
-        
-                    <div id="contenidopestanas">
-                    </div>
-                  </div>
                 </div>
-              </div>
-            
+            </div>
 
-            <!--
-            <input id="fileInput" title="Abrir" type="file" size="50" onchange="AbrirArchivo(this.files)" class="btn btn-dark">
-            <button onclick="DescargarArchivo();" id="guardar" title="Guardar" class="btn btn-warning">Guardar</button>
-            <button class="btn btn-success" onclick="analisis()">Ejecutar</button>
-            -->
-            <!-- Aca mando a llamar el metodo para obtener errores       ,   le mando el texto como si fuera analizar solo que recibo los errores en lugar del arbol por ejemplo           -->
 
-            <!--
-            <button class="btn btn-secondary" onclick="errores()">Obtener Errores</button>
-            <button class="btn btn-light" >Generar AST</button>
-            -->
 
-            
         </div>
         <br>
         <br>
@@ -184,6 +177,9 @@
 
 
 
+        <div id = "copias">
+
+        </div>
 
 
 
@@ -209,31 +205,7 @@
 
 
 
-
-
-
-        <!-- Aca despliego los errores  -->
-        <div id="capa">
-
-        </div>
-
-
-        <!-- Aca despliego el Arbol de Sintaxis    -->
-        <div id="SimpleJSTree"></div>
-
-
-
-        <!-- Footer -->
-        <!--
-      <footer class="py-5 bg-dark">
-        <div class="container">
-          <p class="m-0 text-center text-white">ANTHONY FERNANDO SON MUX   &copy;       201800634</p>
-        </div>
-        -->
-        <!-- /.container -->
-        <!--</footer>-->
-
-        </div>
     </body>
 
 </html>
+

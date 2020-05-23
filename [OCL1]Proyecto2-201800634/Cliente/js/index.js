@@ -347,3 +347,27 @@ capa.innerHTML = data.toString();
   });
   console.log("ERROR DE ENTRADA");    
 }
+
+function reportes() {
+  
+    var ventana_actual2=document.getElementById("textarea_A");
+    var ventana_actual1=document.getElementById(get_vent());
+  
+     var texto2 = ventana_actual2.value;// consola 2 
+     var texto1 = ventana_actual1.value; // consola 1 
+     alert("ENTRADA1: "+ texto1);
+     alert("ENTRADA2: "+ texto2);
+      //copias
+     var url = 'http://localhost:7000/reportes/';
+     var copias_div = document.getElementById("copias");
+     $.post(url, { text1: texto1 , text2: texto2 }, function (data, status) {
+           if (status.toString() == "success") {
+               console.log(data)
+              copias_div.innerHTML = data;    
+     
+           } else {
+               alert("Error estado de conexion:" + status);
+           }
+       });
+  
+   }

@@ -4,7 +4,7 @@ const ClaseCopia_1 = require("./ClaseCopia");
 const FuncionCopia_1 = require("./FuncionCopia");
 const Variable_1 = require("./Variable");
 const VariableCopia_1 = require("./VariableCopia");
-class Rep {
+class Reporte {
     constructor() {
     }
     static getHTML() {
@@ -18,112 +18,112 @@ class Rep {
         return definitiva;
     }
     static addClase(c) {
-        if (Rep.t1 == true) {
-            Rep.ListaClases1.push(c);
+        if (Reporte.t1 == true) {
+            Reporte.ListaClases1.push(c);
         }
-        if (Rep.t2 == true) {
-            Rep.ListaClases2.push(c);
+        if (Reporte.t2 == true) {
+            Reporte.ListaClases2.push(c);
         }
     }
     static addMetodo(key, m) {
-        if (Rep.t1 == true) {
-            for (let i = 0; i < Rep.ListaClases1.length; i++) {
-                if (key == Rep.ListaClases1[i].id) {
-                    Rep.ListaClases1[i].addMetodo(m);
+        if (Reporte.t1 == true) {
+            for (let i = 0; i < Reporte.ListaClases1.length; i++) {
+                if (key == Reporte.ListaClases1[i].id) {
+                    Reporte.ListaClases1[i].addMetodo(m);
                     break;
                 }
             }
         }
-        if (Rep.t2 == true) {
-            for (let i = 0; i < Rep.ListaClases2.length; i++) {
-                if (key == Rep.ListaClases2[i].id) {
-                    Rep.ListaClases2[i].addMetodo(m);
+        if (Reporte.t2 == true) {
+            for (let i = 0; i < Reporte.ListaClases2.length; i++) {
+                if (key == Reporte.ListaClases2[i].id) {
+                    Reporte.ListaClases2[i].addMetodo(m);
                     break;
                 }
             }
         }
     }
     static addVariable(nombreMetodo, idVar, tipo) {
-        if (Rep.t1 == true) {
-            let metodo = Rep.claseActual.getMETODO(nombreMetodo); // ya se en que clase estoy 
+        if (Reporte.t1 == true) {
+            let metodo = Reporte.claseActual.getMETODO(nombreMetodo); // ya se en que clase estoy 
             metodo.listVariables.push(new Variable_1.Variable(idVar, tipo));
         }
-        if (Rep.t2 == true) {
-            let metodo = Rep.claseActual.getMETODO(nombreMetodo);
+        if (Reporte.t2 == true) {
+            let metodo = Reporte.claseActual.getMETODO(nombreMetodo);
             metodo.listVariables.push(new Variable_1.Variable(idVar, tipo));
         }
     }
     static getCLASE(id) {
-        if (Rep.t1 == true) {
-            for (let i = 0; i < Rep.ListaClases1.length; i++) {
-                if (id == Rep.ListaClases1[i].id) {
-                    return Rep.ListaClases1[i];
+        if (Reporte.t1 == true) {
+            for (let i = 0; i < Reporte.ListaClases1.length; i++) {
+                if (id == Reporte.ListaClases1[i].id) {
+                    return Reporte.ListaClases1[i];
                 }
             }
         }
-        if (Rep.t2 == true) {
-            for (let i = 0; i < Rep.ListaClases2.length; i++) {
-                if (id == Rep.ListaClases2[i].id) {
-                    return Rep.ListaClases2[i];
+        if (Reporte.t2 == true) {
+            for (let i = 0; i < Reporte.ListaClases2.length; i++) {
+                if (id == Reporte.ListaClases2[i].id) {
+                    return Reporte.ListaClases2[i];
                 }
             }
         }
     } // fin metodo 
     static addPARAMETROS(nombreMetodo, listaParametros) {
-        if (Rep.t1 == true) {
-            let metodo = Rep.claseActual.getMETODO(nombreMetodo);
+        if (Reporte.t1 == true) {
+            let metodo = Reporte.claseActual.getMETODO(nombreMetodo);
             metodo.listaParametros = listaParametros;
         }
-        if (Rep.t2 == true) {
-            let metodo = Rep.claseActual.getMETODO(nombreMetodo);
+        if (Reporte.t2 == true) {
+            let metodo = Reporte.claseActual.getMETODO(nombreMetodo);
             metodo.listaParametros = listaParametros;
         }
     } // fin metodo 
     static addTIPO_RETORNO(nombreMetodo, tipo) {
-        if (Rep.t1 == true) {
-            let metodo = Rep.claseActual.getMETODO(nombreMetodo);
+        if (Reporte.t1 == true) {
+            let metodo = Reporte.claseActual.getMETODO(nombreMetodo);
             metodo.tipoDeRetorno = tipo;
         }
-        if (Rep.t2 == true) {
-            let metodo = Rep.claseActual.getMETODO(nombreMetodo);
+        if (Reporte.t2 == true) {
+            let metodo = Reporte.claseActual.getMETODO(nombreMetodo);
             metodo.tipoDeRetorno = tipo;
         }
     } // fin metodo
     static clear() {
         // CUIADO CON LOS PUNTEROS  QUE SE PUEDE APUNTAR A LA MISMA LISTA 
         let vacio = [];
-        Rep.ListaClases1 = vacio;
+        Reporte.ListaClases1 = vacio;
         let vacio2 = [];
-        Rep.ListaClases2 = vacio2;
+        Reporte.ListaClases2 = vacio2;
         this.t1 = false;
         this.t2 = false;
         let vacio3 = [];
-        Rep.ListaClasesCopia = vacio3;
+        Reporte.ListaClasesCopia = vacio3;
         let vacio4 = [];
-        Rep.ListaFuncionesCopia = vacio4;
-        Rep.nombreMetodoActual = "";
+        Reporte.ListaFuncionesCopia = vacio4;
+        Reporte.nombreMetodoActual = "";
         let vacio5 = [];
-        Rep.ListaVariablesCopia = vacio5;
+        Reporte.ListaVariablesCopia = vacio5;
     }
     static get2() {
-        return Rep.ListaClases2;
+        return Reporte.ListaClases2;
     }
     static get1() {
-        return Rep.ListaClases1;
+        return Reporte.ListaClases1;
     }
     static printClases1() {
         console.log("************ARCHIVO 1****************");
-        for (let i = 0; i < Rep.ListaClases1.length; i++) {
-            console.log("||| CLASE " + Rep.ListaClases1[i].id + "|||");
-            Rep.ListaClases1[i].printMetodos();
+        for (let i = 0; i < Reporte.ListaClases1.length; i++) {
+            console.log("||| CLASE " + Reporte.ListaClases1[i].id + "|||");
+            Reporte.ListaClases1[i].printMetodos();
         }
         console.log("*************************************");
     }
     static printClases2() {
         console.log("************ARCHIVO 2****************");
-        for (let i = 0; i < Rep.ListaClases2.length; i++) {
-            console.log("||| CLASE " + Rep.ListaClases2[i].id + "|||");
-            Rep.ListaClases2[i].printMetodos();
+        for (let i = 0; i < Reporte.ListaClases2.length; i++) {
+            console.log("||| CLASE " + Reporte.ListaClases2[i].id + "|||");
+            Reporte.ListaClases2[i].printMetodos();
         }
         console.log("*************************************");
     }
@@ -156,7 +156,7 @@ class Rep {
         if (metodos1.length == 0 && metodos2.length == 0) {
             // si es copia porque solo tienen los nombres 
             res.push(true); // si es copia 
-            res.push(0); // metodos repetidos 0 
+            res.push(0); // metodos Reporteetidos 0 
             return res;
         }
         if (metodos1.length != metodos2.length) {
@@ -186,14 +186,14 @@ class Rep {
         }
     }
     static toCopiaClase(nombre, cantidad) {
-        Rep.ListaClasesCopia.push(new ClaseCopia_1.ClaseCopia(nombre, cantidad));
+        Reporte.ListaClasesCopia.push(new ClaseCopia_1.ClaseCopia(nombre, cantidad));
     }
     static getCopiasClases() {
         var cad = "";
         if (this.ListaClasesCopia.length != 0) {
             cad += "<body class=\"MIfondo\">\n";
             cad += "<div align=\"center\"  class=\"MIfondo\"> \n";
-            cad += "<h1 class = \"tituloTb\">REPORTE DE CLASES COPIA </h1>\n";
+            cad += "<h1 class = \"tituloTb\">ReporteORTE DE CLASES COPIA </h1>\n";
             cad += "<table border=\"2\" align=\"center\" class=\"tabl\">\n";
             cad += "<tr>\n";
             cad += "<th>#</th><th> NOMBRE DE LA CLASE </th><th> CANTIDAD DE METODOS</th>\n";
@@ -225,7 +225,7 @@ class Rep {
         if (this.ListaFuncionesCopia.length != 0) {
             cad += "<body class=\"MIfondo\">\n";
             cad += "<div align=\"center\"  class=\"MIfondo\"> \n";
-            cad += "<h1 class = \"tituloTb\">REPORTE DE FUNCIONES  COPIA </h1>\n";
+            cad += "<h1 class = \"tituloTb\">ReporteORTE DE FUNCIONES  COPIA </h1>\n";
             cad += "<table border=\"2\" align=\"center\" class=\"tabl\">\n";
             cad += "<tr>\n";
             cad += "<th>#</th><th>Nombre de la clase</th><th>Nombre Metodo/funcion </th><th>TIPO</th><th> Lista de Parametros </th><th>Tipo de retorno</th>\n";
@@ -267,7 +267,7 @@ class Rep {
                             if (metodos1[i].ParametrostoStringVERIFICACION() == metodos2[j].ParametrostoStringVERIFICACION()) {
                                 console.log("BAI BAI HAY UNA COPIA DE METODO");
                                 // creo mi objeto copia de funcion 
-                                Rep.ListaFuncionesCopia.push(new FuncionCopia_1.FuncionCopia(metodos1[i].id, metodos1[i].tipo, metodos1[i].tipoDeRetorno, nombreclase, metodos1[i].toReportCopiaFuncion()));
+                                Reporte.ListaFuncionesCopia.push(new FuncionCopia_1.FuncionCopia(metodos1[i].id, metodos1[i].tipo, metodos1[i].tipoDeRetorno, nombreclase, metodos1[i].toReporteortCopiaFuncion()));
                             }
                         }
                     }
@@ -292,19 +292,19 @@ class Rep {
             }
         }
     }
-    /*             REPORTE DE VARIABLES COPIA        */
+    /*             ReporteORTE DE VARIABLES COPIA        */
     static getCopiasVariables() {
         /*
-        Este reporte deberá mostrar un listado de las variables que se consideran copia, para
+        Este Reporteorte deberá mostrar un listado de las variables que se consideran copia, para
         considerar una variable como copia deberá pertenecer al mismo métodos y/o función y a la
-        misma clase, así como el mismo tipo. Este reporte mostrará el tipo de la variable, nombre, la
+        misma clase, así como el mismo tipo. Este Reporteorte mostrará el tipo de la variable, nombre, la
         función y/o método al que pertenece, la clase a la que pertenece.
         */
         var cad = "";
         if (this.ListaVariablesCopia.length != 0) {
             cad += "<body class=\"MIfondo\">\n";
             cad += "<div align=\"center\"  class=\"MIfondo\"> \n";
-            cad += "<h1 class = \"tituloTb\">REPORTE DE VARIABLES COPIA </h1>\n";
+            cad += "<h1 class = \"tituloTb\">ReporteORTE DE VARIABLES COPIA </h1>\n";
             cad += "<table border=\"2\" align=\"center\" class=\"tabl\">\n";
             cad += "<tr>\n";
             cad += "<th>#</th><th>TIPO</th><th>ID</th><th>NOMBRE METODO </th><th>NOMBRE CLASE </th>\n";
@@ -325,11 +325,11 @@ class Rep {
         return cad;
     }
 } // END ARCHIVO 
-exports.Rep = Rep;
-Rep.ListaClases1 = [];
-Rep.ListaClases2 = [];
-Rep.t1 = false;
-Rep.t2 = false;
-Rep.ListaClasesCopia = [];
-Rep.ListaFuncionesCopia = [];
-Rep.ListaVariablesCopia = [];
+exports.Reporte = Reporte;
+Reporte.ListaClases1 = [];
+Reporte.ListaClases2 = [];
+Reporte.t1 = false;
+Reporte.t2 = false;
+Reporte.ListaClasesCopia = [];
+Reporte.ListaFuncionesCopia = [];
+Reporte.ListaVariablesCopia = [];

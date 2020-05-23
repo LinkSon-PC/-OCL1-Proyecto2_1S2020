@@ -4,6 +4,9 @@ import { Break } from './Expresiones/Break';
 import { Continue } from './Expresiones/Continue';
 import { Exception } from './utils/Exception';
 import { Errores } from "./ManejoErrores/Errores";
+import { GraficaArbolAts } from './ManejoErrores/GraficaArbolAts';
+import { Clase } from './Reportes/Clase';
+import { Reporte } from "./Reportes/Reporte";
 import { KeyObject } from 'crypto';
 import { json } from 'body-parser';
 import { parse } from 'querystring';
@@ -100,4 +103,102 @@ app.post('/errores', function (req, res) {
   console.log("SALIDA ERROR");
 
   res.send( Errores.geterror());
+});
+
+
+
+
+app.post('/ats', function (req, res) { // PARA ESTA FUNCION SOLO ES NECESARIA UNA ENTRADA DE TEXTO 
+  GraficaArbolAts.clear();
+  Errores.clear();
+  Reporte.clear();
+  var entrada1 = req.body.text1;
+  const tree = parser.parse(entrada1);
+  const tabla = new Table(null);
+  if (Errores.hay_errores()) {
+    res.send("LA ENTRADA POSEEE ERRORES , NO SE PUEDE GENERAR EL REPORTE");
+  } else {
+    GraficaArbolAts.add("<ul>\n");
+    GraficaArbolAts.add("<li data-jstree='{ \"opened\" : true }'>Raiz\n");
+    GraficaArbolAts.add("<ul>\n");
+    try {
+      tree.instructions.map((m: any) => {
+      const res = m.execute(tabla, tree);
+      });
+    } catch (error) {
+      console.log("ERROR al utilizar el metodo abstracto EXECUTE del ATS");
+    }
+
+    /*     COMIENZO A RECORRER EL ARBOL PARA ELLO SE VALIDO QUE NO VINIERA CON ERRORES */
+
+    GraficaArbolAts.add("</ul>\n");
+    GraficaArbolAts.add("</li>\n");
+    GraficaArbolAts.add("</ul>\n");
+
+
+    // pueden haber errores semanticos 
+    if (Errores.hay_errores()) {
+      res.send("LA ENTRADA POSEEE ERRORES , NO SE PUEDE GENERAR EL REPORTE");
+    } else {
+      res.send(GraficaArbolAts.cadena);
+    }
+
+  }
+
+});
+
+
+
+app.post('/reportes', function (req, res) { // PARA ESTA FUNCION SOLO ES NECESARIA UNA ENTRADA DE TEXTO 
+  console.log("°°°°°°°°REPORTE DE COPIAS PETICION°°°°°°°°°");
+  GraficaArbolAts.clear();
+  Errores.clear();
+  Reporte.clear(); 
+  console.log(req.body);
+  var entrada1 = req.body.text1;
+  var entrada2 = req.body.text2;
+  const tree1 = parser.parse(entrada1);
+  const tabla1 = new Table(null);
+  
+  // se supone que viene sin errores 
+  Reporte.t1 = true ; 
+    try {// lo mando a recorrer 
+    tree1.instructions.map((m: any) => {
+      const res = m.execute(tabla1, tree1);
+    });
+  } catch (error) {
+    console.log("ERRORES en la entrada1 EJECUCION ATS ");
+    console.log(Errores.geterror());
+  }
+Reporte.t1 = false;
+
+
+
+
+
+const tree2 = parser.parse(entrada2);
+const tabla2 = new Table(null);
+
+
+
+
+// se supone que viene sin errores 
+Reporte.t2 = true; // activo
+  try {// lo mando a recorrer 
+  tree2.instructions.map((m: any) => {
+    const res = m.execute(tabla2, tree2);
+  });
+} catch (error) {
+  console.log("ERRORES en la entrada1 EJECUCION ATS ");
+  console.log(Errores.geterror());
+}
+Reporte.t2 = false; // corto el flujo ya no agarra mas clases 
+/*
+
+Reporte.printClases1(); 
+Reporte.printClases2();  */
+Reporte.DeterminarCopiaClases();
+console.log(Reporte.ListaVariablesCopia);
+
+res.send(Reporte.getHTML());
 });
