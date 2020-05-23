@@ -333,14 +333,14 @@ function errores() {
   var texto=ventana_actual.value;
   alert("ENTRADA: "+ texto);
   var url = 'http://localhost:7000/errores/';
-      var capa = document.getElementById("capa");
+      var error = document.getElementById("Errores");
   $.post(url, { text1: texto }, function (data, status) {
       if (status.toString() == "success") {
           console.log(data)
           alert("El resultado es: " + data.toString());
  
 /*                    ACA inyecto el html recibido desde el NodeJs         */     
-capa.innerHTML = data.toString();
+error.innerHTML = data.toString();
       } else {
           alert("Error estado de conexion:" + status);
       }

@@ -35,7 +35,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
 
 
-
+<!--
     <script type="text/javascript">
         $(function () {
 
@@ -57,6 +57,7 @@
             });
         }
     </script>
+-->
  </head>
 
  <body>
@@ -73,11 +74,6 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
 
-                    <!--
-                    <li class="nav-item">
-                        <input id="fileInput" title="Abrir" type="file" size="50" onchange="AbrirArchivo(this.files)" class="btn btn-dark">
-                    </li>
-                    -->
 
                     <li class="nav-item">
                         <a class="btn btn-dark" onclick="DescargarArchivo();" id="guardar" title="Guardar">Guardar</a>
@@ -100,25 +96,6 @@
                         <a class="btn btn-dark">GENERAR AST</a>
                     </li>
 
-
-                    <!--
-                    <li class="nav-item active">
-                        <a class="nav-link">Guardar
-                            <span class="sr-only">(current)</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link"> </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link btn-outline-dark">Guardar como..</a>
-                    </li>
-                    
-                    <li class="nav-item">
-                        <a class="nav-link btn-outline-dark">Salir</a>
-                    </li>
-                    -->
                 </ul>
             </div>
         </div>
@@ -170,6 +147,38 @@
 
 
 
+            <div class="card-group">
+                <div class="card">
+                    REPORTE DE ERROREES
+
+                    <div class="card-body">
+
+                        <div id="Errores">
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="card">
+                    REPORTE DE COPIAS
+
+                    <div class="card-body">
+
+                        <div id = "copias">
+                        </div>
+                        
+                    </div>
+                </div>
+                
+                <div class="card">
+                    AST
+
+                    <div class="card-body">
+
+                    </div>
+                </div>
+            </div>
+
         </div>
         <br>
         <br>
@@ -177,13 +186,13 @@
 
 
 
-        <div id = "copias">
 
-        </div>
-
-
-
-
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.js"></script>
+        <script type="text/javascript">
+            $('table').on('scroll', function () {
+                $("table > *").width($("table").width() + $("table").scrollLeft());
+            });
+        </script>
         <script>
             function Analizar_Entrada() {
                 console.log("Enviar Entradada a http://localhost:7000/analizar/");

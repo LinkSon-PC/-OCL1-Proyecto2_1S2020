@@ -191,12 +191,11 @@ class Reporte {
     static getCopiasClases() {
         var cad = "";
         if (this.ListaClasesCopia.length != 0) {
-            cad += "<body class=\"MIfondo\">\n";
-            cad += "<div align=\"center\"  class=\"MIfondo\"> \n";
-            cad += "<h1 class = \"tituloTb\">ReporteORTE DE CLASES COPIA </h1>\n";
+            cad += "<div align=\"center\" > \n";
+            cad += "<h1 class = \"tituloTb\"> REPORTE CLASES </h1>\n";
             cad += "<table border=\"2\" align=\"center\" class=\"tabl\">\n";
             cad += "<tr>\n";
-            cad += "<th>#</th><th> NOMBRE DE LA CLASE </th><th> CANTIDAD DE METODOS</th>\n";
+            cad += "<th>#</th><th> CLASE </th><th> METODOS/FUNCIONES </th>\n";
             cad += "</tr>\n";
             for (var i = 0; i < this.ListaClasesCopia.length; i++) {
                 cad += "<tr>\n";
@@ -207,7 +206,6 @@ class Reporte {
             }
             cad += "</table>\n";
             cad += "</div>\n";
-            cad += "</body>\n";
             cad += "<br><br><br><br><br>";
         }
         else {
@@ -223,12 +221,11 @@ class Reporte {
         */
         var cad = "";
         if (this.ListaFuncionesCopia.length != 0) {
-            cad += "<body class=\"MIfondo\">\n";
-            cad += "<div align=\"center\"  class=\"MIfondo\"> \n";
-            cad += "<h1 class = \"tituloTb\">ReporteORTE DE FUNCIONES  COPIA </h1>\n";
+            cad += "<div > \n";
+            cad += "<h1 class = \"tituloTb\"> REPORTE DE FUNCIONES </h1>\n";
             cad += "<table border=\"2\" align=\"center\" class=\"tabl\">\n";
             cad += "<tr>\n";
-            cad += "<th>#</th><th>Nombre de la clase</th><th>Nombre Metodo/funcion </th><th>TIPO</th><th> Lista de Parametros </th><th>Tipo de retorno</th>\n";
+            cad += "<th>#</th><th>CLASE</th><th> METODO/FUNCION </th><th>TIPO</th><th> LISTA DE PARAMETROS </th><th> TIPO RETORNO </th>\n";
             cad += "</tr>\n";
             for (var i = 0; i < this.ListaFuncionesCopia.length; i++) {
                 cad += "<tr>\n"; // abre fila 
@@ -237,7 +234,6 @@ class Reporte {
             }
             cad += "</table>\n";
             cad += "</div>\n";
-            cad += "</body>\n";
             cad += "<br><br><br><br><br>";
         }
         else {
@@ -267,7 +263,7 @@ class Reporte {
                             if (metodos1[i].ParametrostoStringVERIFICACION() == metodos2[j].ParametrostoStringVERIFICACION()) {
                                 console.log("BAI BAI HAY UNA COPIA DE METODO");
                                 // creo mi objeto copia de funcion 
-                                Reporte.ListaFuncionesCopia.push(new FuncionCopia_1.FuncionCopia(metodos1[i].id, metodos1[i].tipo, metodos1[i].tipoDeRetorno, nombreclase, metodos1[i].toReporteortCopiaFuncion()));
+                                Reporte.ListaFuncionesCopia.push(new FuncionCopia_1.FuncionCopia(metodos1[i].id, metodos1[i].tipo, metodos1[i].tipoDeRetorno, nombreclase, metodos1[i].toReportCopiaFuncion()));
                             }
                         }
                     }
@@ -302,12 +298,11 @@ class Reporte {
         */
         var cad = "";
         if (this.ListaVariablesCopia.length != 0) {
-            cad += "<body class=\"MIfondo\">\n";
-            cad += "<div align=\"center\"  class=\"MIfondo\"> \n";
-            cad += "<h1 class = \"tituloTb\">ReporteORTE DE VARIABLES COPIA </h1>\n";
-            cad += "<table border=\"2\" align=\"center\" class=\"tabl\">\n";
+            cad += "<div > \n";
+            cad += "<h1 class = \"tituloTb\"> REPORTE DE VARIABLES COPIADAS </h1>\n";
+            cad += "<table border=\"2\" align=\"center\" >\n";
             cad += "<tr>\n";
-            cad += "<th>#</th><th>TIPO</th><th>ID</th><th>NOMBRE METODO </th><th>NOMBRE CLASE </th>\n";
+            cad += "<th>#</th><th>TIPO</th><th>ID</th><th>NOMBRE </th><th> AMBITO/CLASE </th>\n";
             cad += "</tr>\n";
             for (var i = 0; i < this.ListaVariablesCopia.length; i++) {
                 cad += "<tr>\n"; // abre fila 
@@ -316,7 +311,6 @@ class Reporte {
             }
             cad += "</table>\n";
             cad += "</div>\n";
-            cad += "</body>\n";
             cad += "<br><br><br><br><br>";
         }
         else {

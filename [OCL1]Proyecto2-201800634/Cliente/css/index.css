@@ -3,7 +3,35 @@ body {
     background: darkgrey;
 }
 */
+table {
+    border-collapse: collapse;
+    width: 200px;
+    overflow-x: scroll;
+    display: block;
+}
 
+table {
+    border-collapse: collapse;
+    width: 500px;
+    overflow-x: scroll;
+    display: block;
+}
+thead {
+    background-color: #EFEFEF;
+}
+thead, tbody {
+    display: block;
+}
+tbody {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 200px;
+}
+td, th {
+    min-width: 100px;
+    height: 25px;
+    border: dashed 1px lightblue;
+}
 .ta {
     resize: none;
 }
