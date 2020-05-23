@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 
- <head>
+<head>
     <title>201800634</title>
     <!--  Bootstrap  -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -16,8 +16,6 @@
     <link rel="stylesheet" type="text/css" href="css/index.css" />
     <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="css//pagina.css" />
-
     <!--  Jquery  y code mirror  -->
 
 
@@ -31,11 +29,20 @@
     <!--  lo siguient es para JStree    asp  -->
 
 
+    <link rel="stylesheet" href="./website/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="../jstree/dist//themes//default/style.min.css" />
+
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
 
 
-<!--
+    <!--
     <script type="text/javascript">
         $(function () {
 
@@ -58,9 +65,9 @@
         }
     </script>
 -->
- </head>
+</head>
 
- <body>
+<body>
 
 
     <!-- Navigation -->
@@ -76,24 +83,24 @@
 
 
                     <li class="nav-item">
-                        <a class="btn btn-dark" onclick="DescargarArchivo();" id="guardar" title="Guardar">Guardar</a>
+                        <a class="btn btn-light" onclick="DescargarArchivo();" id="guardar" title="Guardar">Guardar</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="btn btn-dark" onclick="reportes();" id="reporte" title="REPOTES">REPOTES</a>
+                        <a class="btn btn-light" onclick="reportes();" id="reporte" title="REPOTES">REPOTES</a>
                     </li>
 
 
                     <li class="nav-item">
-                        <a class="btn btn-dark" onclick="errores()">OBTENER Errores</a>
+                        <a class="btn btn-light" onclick="errores()">OBTENER Errores</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="btn btn-dark" onclick="analisis()">ANALIZR</a>
+                        <a class="btn btn-light" onclick="analisis()">ANALIZR</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="btn btn-dark">GENERAR AST</a>
+                        <a class="btn btn-light" onclick="ats()">GENERAR AST</a>
                     </li>
 
                 </ul>
@@ -164,16 +171,56 @@
 
                     <div class="card-body">
 
-                        <div id = "copias">
+                        <div id="copias">
                         </div>
-                        
+
                     </div>
                 </div>
-                
+
                 <div class="card">
                     AST
 
                     <div class="card-body">
+
+                        <html lang="en">
+
+                        <head>
+                            <meta charset="UTF-8">
+                            <title>E</title>
+                            <style>
+                                .demo {
+                                    overflow: auto;
+                                    border: 1px solid silver;
+                                    min-height: 100px;
+                                }
+                            </style>
+                        </head>
+
+                        <body>
+
+
+                            <h1 style="color: azure;" id="tituloAST"></h1>
+
+                            <div id="ats">
+                            </div>
+
+                            <div id="erroresConsola1">
+                            </div>
+
+                            <h1 style="color: azure;" id="tituloAST2"></h1>
+
+                            <div id="ats2">
+                            </div>
+
+                            <div id="erroresConsola2">
+                            </div>
+
+
+
+                            <script src="./jstree/dist/jstree.min.js"></script>
+                        </body>
+
+                        </html>
 
                     </div>
                 </div>
@@ -187,7 +234,8 @@
 
 
 
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.js"></script>
+        <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.js"></script>
         <script type="text/javascript">
             $('table').on('scroll', function () {
                 $("table > *").width($("table").width() + $("table").scrollLeft());
@@ -217,4 +265,3 @@
     </body>
 
 </html>
-

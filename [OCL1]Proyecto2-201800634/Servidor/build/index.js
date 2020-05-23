@@ -85,7 +85,7 @@ app.post('/errores', function (req, res) {
     console.log("SALIDA ERROR");
     res.send(Errores_1.Errores.geterror());
 });
-app.post('/ats', function (req, res) {
+app.post('/AST', function (req, res) {
     GraficaArbolAts_1.GraficaArbolAts.clear();
     Errores_1.Errores.clear();
     Reporte_1.Reporte.clear();

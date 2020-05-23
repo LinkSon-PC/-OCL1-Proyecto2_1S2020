@@ -108,7 +108,7 @@ app.post('/errores', function (req, res) {
 
 
 
-app.post('/ats', function (req, res) { // PARA ESTA FUNCION SOLO ES NECESARIA UNA ENTRADA DE TEXTO 
+app.post('/AST', function (req, res) { // PARA ESTA FUNCION SOLO ES NECESARIA UNA ENTRADA DE TEXTO 
   GraficaArbolAts.clear();
   Errores.clear();
   Reporte.clear();

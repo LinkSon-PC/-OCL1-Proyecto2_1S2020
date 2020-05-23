@@ -371,3 +371,32 @@ function reportes() {
        });
   
    }
+
+   
+function ats() {
+    var ventana_actual=document.getElementById(get_vent());
+     var texto=ventana_actual.value;
+     alert("ENTRADA: "+ texto);
+     var url = 'http://localhost:7000/AST/';
+     var rep = document.getElementById("ats");
+     var tituloast = document.getElementById("tituloAST");
+     $.post(url, { text1: texto }, function (data, status) {
+         if (status.toString() == "success") {
+             console.log(data)
+             alert("reporte generado");
+   /*                   ACA inyecto el html recibido desde el NodeJs         */     
+   tituloast.innerHTML ="Reporte consola 1 AST"; 
+   rep.setAttribute('style','background-color: azure;');
+   rep.setAttribute('class',"demo");
+   rep.innerHTML = data;
+   
+   
+    /*      en siguiente codigo es como mandarlo a graficar         */    
+            $('#ats').jstree(); 
+   
+         } else {
+             alert("Error estado de conexion:" + status);
+         }
+     });
+   
+   }
